@@ -1,12 +1,12 @@
 .App {
 	/* text-align: center; */
 
-	background-color: #282c34;
+	background-color: #97999c;
 	min-height: 100vh;
 	display: flex;
 
 	font-size: calc(10px + 2vmin);
-	color: white;
+	/* color: white; */
 }
 
 /* LOGIN */
