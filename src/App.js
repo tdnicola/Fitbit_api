@@ -3,15 +3,22 @@ import './App.css';
 import axios from 'axios';
 import SideBar from './components/SideBar';
 import SignIn from './components/SignIn';
-import { Button } from '@material-ui/core/Button';
-import { data } from './data/mockData';
+import { profileData } from './data/mockData';
 
 function App() {
 	const [accessToken, setAccessToken] = useState('1st');
 	const [userId, setUserId] = useState('1st');
 	const [loginShown, setLoginShown] = useState(true);
 	const [userData, setUserData] = useState('');
+	const [overAllData, setOverAllData] = useState('');
+	const [mainDashInfo, setMainDashInfo] = useState(true);
+
 	const [fakeData, setFakeData] = useState('');
+
+	const mainDashHandler = (e) => {
+		e.preventDefault();
+		setMainDashInfo(false);
+	};
 
 	const loginGuest = (e) => {
 		// window.location.href =
@@ -19,7 +26,8 @@ function App() {
 
 		e.preventDefault();
 		setLoginShown(false);
-		setUserData(data.user);
+		setUserData(profileData.user);
+		setOverAllData(profileData.overAll);
 		console.log('loginShow');
 	};
 
@@ -48,6 +56,14 @@ function App() {
 			headers: { Authorization: `Bearer ${accessToken}` },
 		};
 
+		const profileData = `https://api.fitbit.com/1/user/${userId}/profile.json`;
+		const lifeTimeData = `https://api.fitbit.com/1/user/${userId}/activities.json`;
+		//api.fitbit.com/1/user/[user-id]/activities.json
+		const activitiesList = `https://api.fitbit.com/1/user/-/activities/list.json`;
+		const frequentActivities = `https://api.fitbit.com/1/user/3GTZLF/activities/frequent.json`;
+		const recentActivites = `https://api.fitbit.com/1/user/-/activities/recent.json`;
+		//daily goals
+		const ActiviteGoals = `https://api.fitbit.com/1/user/${userId}/activities/goals/daily.json`;
 		axios
 			.get(`https://api.fitbit.com/1/user/${userId}/profile.json`, config)
 			.then((res) => {
@@ -57,7 +73,7 @@ function App() {
 
 	const useGuestData = (e) => {
 		e.preventDefault();
-		setUserData(data.user);
+		setUserData(profileData.user);
 		console.log('hello');
 		// const config = {
 		// 	headers: { Authorization: `Bearer ${this.state.access_token}` },
@@ -79,7 +95,14 @@ function App() {
 			{loginShown && (
 				<SignIn loginGuest={loginGuest} useGuestData={useGuestData} />
 			)}
-			{!loginShown && <SideBar userData={userData} />}
+			{!loginShown && (
+				<SideBar
+					userData={userData}
+					overAllData={overAllData}
+					mainDashHandler={mainDashHandler}
+					mainDashInfo={mainDashInfo}
+				/>
+			)}
 		</div>
 	);
 }

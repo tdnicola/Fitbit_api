@@ -17,19 +17,25 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import PieChartIcon from '@material-ui/icons/PieChart';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import HomeIcon from '@material-ui/icons/Home';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
 	root: {
 		display: 'flex',
+	},
+	paper: {
+		padding: theme.spacing(1),
+		textAlign: 'center',
+		color: theme.palette.text.secondary,
 	},
 	appBar: {
 		zIndex: theme.zIndex.drawer + 1,
@@ -85,16 +91,23 @@ const useStyles = makeStyles((theme) => ({
 	},
 	content: {
 		flexGrow: 1,
-		padding: theme.spacing(3),
+		margin: '20px',
 	},
 	avatarImg: {
 		borderRadius: '50%',
 		height: '35px',
-		marginTop: '10px',
+		float: 'right',
+		marginLeft: '15px',
 	},
 }));
 
-export default ({ useGuestData, userData }) => {
+export default ({
+	useGuestData,
+	userData,
+	overAllData,
+	mainDashHandler,
+	mainDashInfo,
+}) => {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
@@ -130,12 +143,12 @@ export default ({ useGuestData, userData }) => {
 					</IconButton>
 					<Typography variant='h6' noWrap>
 						Hello {userData.fullName}
-						<img
-							className={classes.avatarImg}
-							src='https://static0.fitbit.com/images/profile/defaultProfile_100.png'
-							alt='avatar'
-						/>
 					</Typography>
+					<img
+						className={classes.avatarImg}
+						src='https://static0.fitbit.com/images/profile/defaultProfile_100.png'
+						alt='avatar'
+					/>
 				</Toolbar>
 			</AppBar>
 			<Drawer
@@ -162,6 +175,28 @@ export default ({ useGuestData, userData }) => {
 				</div>
 				<Divider />
 				<List>
+					<ListItem
+						button
+						key={'Home'}
+						onClick={(e) => {
+							mainDashHandler(e);
+						}}
+					>
+						<ListItemIcon>{<HomeIcon />}</ListItemIcon>
+						<ListItemText primary={'Home'} />
+					</ListItem>
+					<ListItem
+						button
+						key={'aboutMe'}
+						onClick={(e) => {
+							mainDashHandler(e);
+						}}
+					>
+						<ListItemIcon>{<AccountCircleIcon />}</ListItemIcon>
+						<ListItemText primary={'About me'} />
+					</ListItem>
+				</List>
+				<List>
 					{['Lifetime', 'Today', 'Past Week'].map((text, index) => (
 						<ListItem button key={text}>
 							<ListItemIcon>
@@ -172,18 +207,34 @@ export default ({ useGuestData, userData }) => {
 					))}
 				</List>
 				<Divider />
-				<List>
-					{['About me'].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>{<AccountCircleIcon />}</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
-				</List>
 			</Drawer>
-			<main className={classes.content}>
-				<StatsCard userData={userData} />
-			</main>
+			<div className={classes.content}>
+				{mainDashInfo && (
+					<Grid container spacing={2}>
+						<Grid container item xs={4} spacing={1}>
+							<StatsCard
+								userData={userData}
+								title={'Total Steps:'}
+								overAllData={overAllData.lifetime.total.steps}
+							/>
+						</Grid>
+						<Grid container item xs={4} spacing={1}>
+							<StatsCard
+								userData={userData}
+								title={'Total Floors:'}
+								overAllData={overAllData.lifetime.total.floors}
+							/>
+						</Grid>
+						<Grid container item xs={4} spacing={1}>
+							<StatsCard
+								userData={userData}
+								title={'Total Distance:'}
+								overAllData={overAllData.lifetime.total.distance}
+							/>
+						</Grid>
+					</Grid>
+				)}
+			</div>
 		</div>
 	);
 };

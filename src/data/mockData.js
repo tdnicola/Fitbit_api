@@ -1,4 +1,4 @@
-const data = {
+const profileData = {
 	user: {
 		age: 31,
 		ambassador: false,
@@ -185,6 +185,31 @@ const data = {
 		weight: 86.1,
 		weightUnit: 'en_US',
 	},
+	overAll: {
+		lifetime: {
+			total: {
+				activeScore: -1,
+				caloriesOut: -1,
+				distance: 1614.53,
+				floors: 2408,
+				steps: 2112650,
+			},
+			tracker: {
+				activeScore: -1,
+				caloriesOut: -1,
+				distance: 1614.53,
+				floors: 2408,
+				steps: 2112650,
+			},
+		},
+	},
+	goals: {
+		activeMinutes: 30,
+		caloriesOut: 2184,
+		distance: 8.05,
+		floors: 10,
+		steps: 10000,
+	},
 };
 
-export { data };
+export { profileData };
