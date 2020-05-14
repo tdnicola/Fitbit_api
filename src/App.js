@@ -43,32 +43,63 @@ function App() {
 			setUserId(user_Id);
 			setAccessToken(access_token_code);
 			setLoginShown(false);
+
+			getUserData(user_Id, access_token_code);
 		}
 	}, []);
 
-	const getUserData = (e) => {
+	const getUserData = (user_Id, access_token_code) => {
 		// window.location.href =
 		// 	'https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=22BQSB&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800';
-		console.log(accessToken, userId);
-		e.preventDefault();
+		console.log(access_token_code, user_Id);
 
 		const config = {
-			headers: { Authorization: `Bearer ${accessToken}` },
+			headers: { Authorization: `Bearer ${access_token_code}` },
 		};
 
-		const profileData = `https://api.fitbit.com/1/user/${userId}/profile.json`;
-		const lifeTimeData = `https://api.fitbit.com/1/user/${userId}/activities.json`;
+		const profileData = `https://api.fitbit.com/1/user/${user_Id}/profile.json`;
+		const lifeTimeData = `https://api.fitbit.com/1/user/${user_Id}/activities.json`;
 		//api.fitbit.com/1/user/[user-id]/activities.json
-		const activitiesList = `https://api.fitbit.com/1/user/-/activities/list.json`;
-		const frequentActivities = `https://api.fitbit.com/1/user/3GTZLF/activities/frequent.json`;
-		const recentActivites = `https://api.fitbit.com/1/user/-/activities/recent.json`;
+		const activitiesList = `https://api.fitbit.com/1/user/${user_Id}/activities/list.json`;
+		const frequentActivities = `https://api.fitbit.com/1/user/${user_Id}/activities/frequent.json`;
+		const recentActivites = `https://api.fitbit.com/1/user/${user_Id}/activities/recent.json`;
 		//daily goals
-		const ActiviteGoals = `https://api.fitbit.com/1/user/${userId}/activities/goals/daily.json`;
+		const ActiviteGoals = `https://api.fitbit.com/1/user/${user_Id}/activities/goals/daily.json`;
+
+		const requestOne = axios.get(profileData, config);
+		const requestTwo = axios.get(lifeTimeData, config);
+		const requestThree = axios.get(frequentActivities, config);
+		const requestFour = axios.get(recentActivites, config);
+		const requestFive = axios.get(ActiviteGoals, config);
+
 		axios
-			.get(`https://api.fitbit.com/1/user/${userId}/profile.json`, config)
-			.then((res) => {
-				console.log(res);
+			.all([requestOne, requestTwo, requestThree, requestFour, requestFive])
+			.then(
+				axios.spread((...responses) => {
+					const responseOne = responses[0];
+					const responseTwo = responses[1];
+					const responseThree = responses[2];
+					const responseFour = responses[3];
+					const responseFive = responses[4];
+
+					console.log(
+						responseOne,
+						responseTwo,
+						responseThree,
+						responseFour,
+						responseFive
+					);
+				})
+			)
+			.catch((errors) => {
+				console.log(errors);
 			});
+
+		// axios
+		// 	.get(`https://api.fitbit.com/1/user/${userId}/profile.json`, config)
+		// 	.then((res) => {
+		// 		console.log(res);
+		// 	});
 	};
 
 	const useGuestData = (e) => {
@@ -93,16 +124,20 @@ function App() {
 	return (
 		<div className='App'>
 			{loginShown && (
-				<SignIn loginGuest={loginGuest} useGuestData={useGuestData} />
+				<SignIn
+					loginGuest={loginGuest}
+					useGuestData={useGuestData}
+					getUserData={getUserData}
+				/>
 			)}
-			{!loginShown && (
+			{/* {!loginShown && (
 				<SideBar
 					userData={userData}
 					overAllData={overAllData}
 					mainDashHandler={mainDashHandler}
 					mainDashInfo={mainDashInfo}
 				/>
-			)}
+			)} */}
 		</div>
 	);
 }
