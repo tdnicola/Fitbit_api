@@ -3,21 +3,23 @@ import './App.css';
 import axios from 'axios';
 import SideBar from './components/SideBar';
 import SignIn from './components/SignIn';
-import { profileData } from './data/mockData';
+import { mockProfileData } from './data/mockData';
 
 function App() {
 	const [accessToken, setAccessToken] = useState('1st');
 	const [userId, setUserId] = useState('1st');
 	const [loginShown, setLoginShown] = useState(true);
-	const [userData, setUserData] = useState('');
-	const [overAllData, setOverAllData] = useState('');
 	const [mainDashInfo, setMainDashInfo] = useState(true);
 
-	const [fakeData, setFakeData] = useState('');
+	const [profileData, setProfileData] = useState('');
+	const [lifeTimeData, setLifeTimeData] = useState('');
+	const [frequentActivities, setFrequentActivities] = useState('');
+	const [recentActivites, setRecentActivites] = useState('');
+	const [ActiviteGoals, setActiviteGoals] = useState('');
 
 	const mainDashHandler = (e) => {
 		e.preventDefault();
-		setMainDashInfo(false);
+		setMainDashInfo(!mainDashInfo);
 	};
 
 	const loginGuest = (e) => {
@@ -26,14 +28,13 @@ function App() {
 
 		e.preventDefault();
 		setLoginShown(false);
-		setUserData(profileData.user);
-		setOverAllData(profileData.overAll);
-		console.log('loginShow');
+		setProfileData(mockProfileData.user);
+		setLifeTimeData(mockProfileData.lifetime);
 	};
 
 	useEffect(() => {
 		if (window.location.href === 'http://localhost:3000/') {
-			console.log(fakeData);
+			return;
 		} else {
 			const url = window.location.href;
 			//getting the access token from url
@@ -45,6 +46,13 @@ function App() {
 			setLoginShown(false);
 
 			getUserData(user_Id, access_token_code);
+
+			// let accessToken = localStorage.getItem('token');
+			// if (accessToken !== null) {
+
+			// }
+			// localStorage.setItem('token', access_token_code);
+			// localStorage.setItem('user', user_Id);
 		}
 	}, []);
 
@@ -57,20 +65,21 @@ function App() {
 			headers: { Authorization: `Bearer ${access_token_code}` },
 		};
 
-		const profileData = `https://api.fitbit.com/1/user/${user_Id}/profile.json`;
-		const lifeTimeData = `https://api.fitbit.com/1/user/${user_Id}/activities.json`;
-		//api.fitbit.com/1/user/[user-id]/activities.json
-		const activitiesList = `https://api.fitbit.com/1/user/${user_Id}/activities/list.json`;
-		const frequentActivities = `https://api.fitbit.com/1/user/${user_Id}/activities/frequent.json`;
-		const recentActivites = `https://api.fitbit.com/1/user/${user_Id}/activities/recent.json`;
+		const getProfileData = `https://api.fitbit.com/1/user/${user_Id}/profile.json`;
+		const getLifeTimeData = `https://api.fitbit.com/1/user/${user_Id}/activities.json`;
+		const getActivitiesList = `https://api.fitbit.com/1/user/${user_Id}/activities/list.json`;
+		const getFrequentActivities = `https://api.fitbit.com/1/user/${user_Id}/activities/frequent.json`;
+		const getRecentActivites = `https://api.fitbit.com/1/user/${user_Id}/activities/recent.json`;
 		//daily goals
-		const ActiviteGoals = `https://api.fitbit.com/1/user/${user_Id}/activities/goals/daily.json`;
+		const getActiviteGoals = `https://api.fitbit.com/1/user/${user_Id}/activities/goals/daily.json`;
 
-		const requestOne = axios.get(profileData, config);
-		const requestTwo = axios.get(lifeTimeData, config);
-		const requestThree = axios.get(frequentActivities, config);
-		const requestFour = axios.get(recentActivites, config);
-		const requestFive = axios.get(ActiviteGoals, config);
+		const requestOne = axios.get(getProfileData, config);
+		const requestTwo = axios.get(getLifeTimeData, config);
+		const requestThree = axios.get(getFrequentActivities, config);
+		const requestFour = axios.get(getRecentActivites, config);
+		const requestFive = axios.get(getActiviteGoals, config);
+
+		// let mounted = true;
 
 		axios
 			.all([requestOne, requestTwo, requestThree, requestFour, requestFive])
@@ -82,62 +91,43 @@ function App() {
 					const responseFour = responses[3];
 					const responseFive = responses[4];
 
-					console.log(
-						responseOne,
-						responseTwo,
-						responseThree,
-						responseFour,
-						responseFive
-					);
+					// if (mounted) {
+					// }
+					setProfileData(responseOne.data.user);
+					setLifeTimeData(responseTwo.data.lifetime);
+					setFrequentActivities(responseThree.data);
+					setRecentActivites(responseFour.data);
+					setActiviteGoals(responseFive.data);
+					console.log(responseOne.data.user.fullName);
 				})
 			)
 			.catch((errors) => {
 				console.log(errors);
 			});
-
-		// axios
-		// 	.get(`https://api.fitbit.com/1/user/${userId}/profile.json`, config)
-		// 	.then((res) => {
-		// 		console.log(res);
-		// 	});
+		// return () => (mounted = false);
 	};
 
-	const useGuestData = (e) => {
+	const dataTransfer = (e) => {
+		return profileData;
+	};
+
+	const buttonDataTest = (e) => {
 		e.preventDefault();
-		setUserData(profileData.user);
-		console.log('hello');
-		// const config = {
-		// 	headers: { Authorization: `Bearer ${this.state.access_token}` },
-		// };
-
-		// axios
-		// 	.get(
-		// 'https://api.fitbit.com/1/user/[user-id]/profile.json'
-		// 		`https://api.fitbit.com/1/user/${this.state.userId}/activities.json`,
-		// 		config
-		// 	)
-		// 	.then((res) => {
-		// 		console.log(res);
-		// 	});
+		console.log(profileData.user);
 	};
-
 	return (
 		<div className='App'>
-			{loginShown && (
-				<SignIn
-					loginGuest={loginGuest}
-					useGuestData={useGuestData}
-					getUserData={getUserData}
-				/>
-			)}
-			{/* {!loginShown && (
+			{loginShown && <SignIn loginGuest={loginGuest} />}
+			{!loginShown && (
 				<SideBar
-					userData={userData}
-					overAllData={overAllData}
+					profileData={profileData}
+					lifeTimeData={lifeTimeData}
 					mainDashHandler={mainDashHandler}
 					mainDashInfo={mainDashInfo}
+					buttonDataTest={buttonDataTest}
+					dataTransfer={dataTransfer}
 				/>
-			)} */}
+			)}
 		</div>
 	);
 }

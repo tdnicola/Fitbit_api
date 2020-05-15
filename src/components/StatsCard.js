@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 	},
 });
 
-export default ({ userData, title, overAllData }) => {
+export default ({ title, lifeTimeData }) => {
 	const classes = useStyles();
 
 	return (
@@ -33,7 +33,8 @@ export default ({ userData, title, overAllData }) => {
 				<Typography variant='h5' component='h2'>
 					{title}
 				</Typography>
-				{overAllData}
+				{/* {lifeTimeData ? <em>Loading...</em> : lifeTimeData} */}
+				{lifeTimeData}
 				<Typography variant='body2' component='p'></Typography>
 			</CardContent>
 		</Card>

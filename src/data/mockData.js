@@ -1,4 +1,4 @@
-const profileData = {
+const mockProfileData = {
 	user: {
 		age: 31,
 		ambassador: false,
@@ -185,22 +185,20 @@ const profileData = {
 		weight: 86.1,
 		weightUnit: 'en_US',
 	},
-	overAll: {
-		lifetime: {
-			total: {
-				activeScore: -1,
-				caloriesOut: -1,
-				distance: 1614.53,
-				floors: 2408,
-				steps: 2112650,
-			},
-			tracker: {
-				activeScore: -1,
-				caloriesOut: -1,
-				distance: 1614.53,
-				floors: 2408,
-				steps: 2112650,
-			},
+	lifetime: {
+		total: {
+			activeScore: -1,
+			caloriesOut: -1,
+			distance: 1614.53,
+			floors: 2408,
+			steps: 2112650,
+		},
+		tracker: {
+			activeScore: -1,
+			caloriesOut: -1,
+			distance: 1614.53,
+			floors: 2408,
+			steps: 2112650,
 		},
 	},
 	goals: {
@@ -210,6 +208,98 @@ const profileData = {
 		floors: 10,
 		steps: 10000,
 	},
+	frequent: [
+		{
+			activityId: 90013,
+			calories: 0,
+			description: 'Walking less than 2 mph, strolling very slowly',
+			distance: 0,
+			duration: 1638000,
+			name: 'Walk',
+		},
+		{
+			activityId: 15000,
+			calories: 0,
+			description: '',
+			distance: 0,
+			duration: 1689000,
+			name: 'Sport',
+		},
+		{
+			activityId: 90009,
+			calories: 0,
+			description: 'Running - 5 mph (12 min/mile)',
+			distance: 0,
+			duration: 1127000,
+			name: 'Run',
+		},
+		{
+			activityId: 20047,
+			calories: 0,
+			description: '',
+			distance: 0,
+			duration: 1126000,
+			name: 'Elliptical',
+		},
+		{
+			activityId: 3001,
+			calories: 0,
+			description: '',
+			distance: 0,
+			duration: 1485000,
+			name: 'Aerobic Workout',
+		},
+		{
+			activityId: 3104,
+			calories: 0,
+			description: '',
+			distance: 0,
+			duration: 20000,
+			name: 'Fitstar: Personal Trainer',
+		},
+	],
+	recent: [
+		{
+			activityId: 90009,
+			calories: 0,
+			description: 'Running - 5 mph (12 min/mile)',
+			distance: 0,
+			duration: 1127000,
+			name: 'Run',
+		},
+		{
+			activityId: 90013,
+			calories: 0,
+			description: 'Walking less than 2 mph, strolling very slowly',
+			distance: 0,
+			duration: 1638000,
+			name: 'Walk',
+		},
+		{
+			activityId: 15000,
+			calories: 0,
+			description: '',
+			distance: 0,
+			duration: 1689000,
+			name: 'Sport',
+		},
+		{
+			activityId: 3104,
+			calories: 0,
+			description: '',
+			distance: 0,
+			duration: 20000,
+			name: 'Fitstar: Personal Trainer',
+		},
+		{
+			activityId: 20047,
+			calories: 0,
+			description: '',
+			distance: 0,
+			duration: 1126000,
+			name: 'Elliptical',
+		},
+	],
 };
 
-export { profileData };
+export { mockProfileData };

@@ -25,6 +25,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import HomeIcon from '@material-ui/icons/Home';
+import MainPage from './MainPage';
 
 const drawerWidth = 240;
 
@@ -102,11 +103,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default ({
-	useGuestData,
-	userData,
-	overAllData,
+	profileData,
+	lifeTimeData,
 	mainDashHandler,
 	mainDashInfo,
+	dataTransfer,
 }) => {
 	const classes = useStyles();
 	const theme = useTheme();
@@ -142,7 +143,7 @@ export default ({
 						<MenuIcon />
 					</IconButton>
 					<Typography variant='h6' noWrap>
-						Hello {userData.fullName}
+						Hello {profileData.fullName}
 					</Typography>
 					<img
 						className={classes.avatarImg}
@@ -209,30 +210,30 @@ export default ({
 				<Divider />
 			</Drawer>
 			<div className={classes.content}>
-				{mainDashInfo && (
+				{/* {mainDashInfo && (
 					<Grid container spacing={2}>
 						<Grid container item xs={4} spacing={1}>
 							<StatsCard
-								userData={userData}
 								title={'Total Steps:'}
-								overAllData={overAllData.lifetime.total.steps}
+								lifeTimeData={lifeTimeData.total.steps}
 							/>
 						</Grid>
 						<Grid container item xs={4} spacing={1}>
 							<StatsCard
-								userData={userData}
 								title={'Total Floors:'}
-								overAllData={overAllData.lifetime.total.floors}
+								lifeTimeData={lifeTimeData.total.floors}
 							/>
 						</Grid>
 						<Grid container item xs={4} spacing={1}>
 							<StatsCard
-								userData={userData}
 								title={'Total Distance:'}
-								overAllData={overAllData.lifetime.total.distance}
+								lifeTimeData={lifeTimeData.total.distance}
 							/>
 						</Grid>
 					</Grid>
+				)} */}
+				{mainDashInfo && (
+					<MainPage dataTransfer={dataTransfer} profileData={profileData} />
 				)}
 			</div>
 		</div>
