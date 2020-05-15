@@ -210,7 +210,7 @@ export default ({
 				<Divider />
 			</Drawer>
 			<div className={classes.content}>
-				{/* {mainDashInfo && (
+				{lifeTimeData && (
 					<Grid container spacing={2}>
 						<Grid container item xs={4} spacing={1}>
 							<StatsCard
@@ -231,8 +231,8 @@ export default ({
 							/>
 						</Grid>
 					</Grid>
-				)} */}
-				{mainDashInfo && (
+				)}
+				{profileData && (
 					<MainPage dataTransfer={dataTransfer} profileData={profileData} />
 				)}
 			</div>

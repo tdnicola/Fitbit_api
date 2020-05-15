@@ -33,7 +33,6 @@ export default ({ title, lifeTimeData }) => {
 				<Typography variant='h5' component='h2'>
 					{title}
 				</Typography>
-				{/* {lifeTimeData ? <em>Loading...</em> : lifeTimeData} */}
 				{lifeTimeData}
 				<Typography variant='body2' component='p'></Typography>
 			</CardContent>

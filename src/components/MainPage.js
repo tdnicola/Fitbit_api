@@ -10,12 +10,13 @@ import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import axios from 'axios';
 
 const useStyles = makeStyles({
 	root: {
 		// minWidth: 275,
 		width: '70%',
-		margin: '75px',
+		margin: '105px',
 		backgroundColor: '#03a9f4',
 		color: 'black',
 		fontSize: '14px',
@@ -35,11 +36,6 @@ const useStyles = makeStyles({
 
 function MainPage({ profileData, dataTransfer }) {
 	const classes = useStyles();
-	const [lifeTimeData, setLifeTimeData] = useState([]);
-
-	useEffect(() => {
-		setLifeTimeData(dataTransfer);
-	});
 
 	return (
 		<React.Fragment>

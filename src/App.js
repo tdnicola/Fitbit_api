@@ -34,33 +34,35 @@ function App() {
 
 	useEffect(() => {
 		if (window.location.href === 'http://localhost:3000/') {
+			// localStorage.setItem('token', 'access_token_code');
+			// localStorage.setItem('user', 'user_Id');
 			return;
 		} else {
-			const url = window.location.href;
-			//getting the access token from url
-			const access_token_code = url.split('#')[1].split('=')[1].split('&')[0];
-			// get the userid
-			const user_Id = url.split('#')[1].split('=')[2].split('&')[0];
-			setUserId(user_Id);
-			setAccessToken(access_token_code);
-			setLoginShown(false);
+			let accessToken = localStorage.getItem('token');
+			if (accessToken === null) {
+				const url = window.location.href;
+				//getting the access token from url
+				const access_token_code = url.split('#')[1].split('=')[1].split('&')[0];
+				// get the userid
+				const user_Id = url.split('#')[1].split('=')[2].split('&')[0];
+				setUserId(user_Id);
+				setAccessToken(access_token_code);
 
-			getUserData(user_Id, access_token_code);
+				// 	// getUserData(user_Id, access_token_code);
 
-			// let accessToken = localStorage.getItem('token');
-			// if (accessToken !== null) {
-
-			// }
-			// localStorage.setItem('token', access_token_code);
-			// localStorage.setItem('user', user_Id);
+				localStorage.setItem('token', access_token_code);
+				localStorage.setItem('user', user_Id);
+				setLoginShown(false);
+			} else {
+				const user_Id = localStorage.getItem('user');
+				const access_token_code = localStorage.getItem('token');
+				setLoginShown(false);
+				getUserData(user_Id, access_token_code);
+			}
 		}
 	}, []);
 
 	const getUserData = (user_Id, access_token_code) => {
-		// window.location.href =
-		// 	'https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=22BQSB&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800';
-		console.log(access_token_code, user_Id);
-
 		const config = {
 			headers: { Authorization: `Bearer ${access_token_code}` },
 		};
@@ -79,8 +81,6 @@ function App() {
 		const requestFour = axios.get(getRecentActivites, config);
 		const requestFive = axios.get(getActiviteGoals, config);
 
-		// let mounted = true;
-
 		axios
 			.all([requestOne, requestTwo, requestThree, requestFour, requestFive])
 			.then(
@@ -91,8 +91,6 @@ function App() {
 					const responseFour = responses[3];
 					const responseFive = responses[4];
 
-					// if (mounted) {
-					// }
 					setProfileData(responseOne.data.user);
 					setLifeTimeData(responseTwo.data.lifetime);
 					setFrequentActivities(responseThree.data);
@@ -104,7 +102,6 @@ function App() {
 			.catch((errors) => {
 				console.log(errors);
 			});
-		// return () => (mounted = false);
 	};
 
 	const dataTransfer = (e) => {
