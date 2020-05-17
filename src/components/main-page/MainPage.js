@@ -15,6 +15,7 @@ import {
 } from 'recharts';
 
 import Badges from '../badges/Badges';
+import DailyStats from '../daily-stats/DailyStats';
 
 const useStyles = makeStyles({
 	root: {
@@ -41,52 +42,19 @@ const useStyles = makeStyles({
 	},
 });
 
-const data = [
-	{
-		name: 'Page A',
-		'Daily Steps': 4000,
-		pv: 2400,
-	},
-	{
-		name: 'Page B',
-		'Daily Steps': 3000,
-		pv: 1398,
-	},
-	{
-		name: 'Page C',
-		'Daily Steps': 2000,
-		pv: 9800,
-	},
-	{
-		name: 'Page D',
-		'Daily Steps': 2780,
-		pv: 3908,
-	},
-	{
-		name: 'Page E',
-		'Daily Steps': 1890,
-		pv: 4800,
-	},
-	{
-		name: 'Page F',
-		'Daily Steps': 2390,
-		pv: 3800,
-	},
-	{
-		name: 'Page G',
-		'Daily Steps': 3490,
-		pv: 4300,
-	},
-];
-function MainPage({ profileData, weeklyStepsData }) {
+function MainPage({ profileData, weeklyStepsData, dailyActivies }) {
 	const classes = useStyles();
 
 	return (
 		<React.Fragment>
 			<CssBaseline />
-			{console.log(weeklyStepsData)}
 			<Container maxWidth='lg'>
-				<BarChart width={730} height={350} data={weeklyStepsData}>
+				<BarChart
+					width={730}
+					height={350}
+					data={weeklyStepsData}
+					style={{ fontSize: 14 }}
+				>
 					<CartesianGrid strokeDasharray='3 3' />
 					<XAxis dataKey='name' />
 					<YAxis domain={[0, 20000]} />
@@ -95,6 +63,8 @@ function MainPage({ profileData, weeklyStepsData }) {
 					<Bar dataKey='value' fill='#8884d8' />
 				</BarChart>
 				<Badges profileData={profileData} />
+
+				<DailyStats dailyActivies={dailyActivies} />
 			</Container>
 		</React.Fragment>
 	);

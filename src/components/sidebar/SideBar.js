@@ -109,6 +109,7 @@ export default ({
 	aboutMeButtonHandler,
 	aboutMeButton,
 	weeklyStepsData,
+	dailyActivies,
 }) => {
 	const classes = useStyles();
 	const theme = useTheme();
@@ -214,6 +215,7 @@ export default ({
 				{lifeTimeData && <LifeTimeData lifeTimeData={lifeTimeData} />}
 				{profileData && mainDashInfo && (
 					<MainPage
+						dailyActivies={dailyActivies}
 						profileData={profileData}
 						weeklyStepsData={weeklyStepsData}
 					/>

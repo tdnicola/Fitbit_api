@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 import SideBar from './components/sidebar/SideBar';
 import SignIn from './components/sign-in/SignIn';
-import { mockProfileData } from './data/mockData';
+import { mockProfileData } from './mockData/mockData';
 
 function App() {
 	const [accessToken, setAccessToken] = useState('1st');
@@ -15,7 +15,7 @@ function App() {
 	const [weeklyStepsData, setWeeklyStepsData] = useState('');
 
 	const [lifeTimeData, setLifeTimeData] = useState('');
-	const [frequentActivities, setFrequentActivities] = useState('');
+	const [dailyActivies, setDailyActivies] = useState('');
 	const [recentActivites, setRecentActivites] = useState('');
 	const [ActiviteGoals, setActiviteGoals] = useState('');
 	const [aboutMeButton, setAboutMeButton] = useState(false);
@@ -40,6 +40,7 @@ function App() {
 		setProfileData(mockProfileData.user);
 		setLifeTimeData(mockProfileData.lifetime);
 		setWeeklyStepsData(mockProfileData['activities-steps']);
+		setDailyActivies(mockProfileData.summary);
 	};
 
 	useEffect(() => {
@@ -82,20 +83,19 @@ function App() {
 		const getActivitiesList = `https://api.fitbit.com/1/user/${user_Id}/activities/list.json`;
 		const getFrequentActivities = `https://api.fitbit.com/1/user/${user_Id}/activities/frequent.json`;
 		const getRecentActivites = `https://api.fitbit.com/1/user/${user_Id}/activities/recent.json`;
-		//daily goals
-
-		const getActiviteGoals = `https://api.fitbit.com/1/user/${user_Id}/activities/goals/daily.json`;
+		//daily summary includes goals
+		const getActiviteGoals = `https://api.fitbit.com/1/user/${user_Id}/activities/date/today.json`;
 
 		// weekly stats for distance/steps
 		// https://api.fitbit.com/1/user/3GTZLF/activities/distance/date/today/7d.json
 		const requestOne = axios.get(getProfileData, config);
 		const requestTwo = axios.get(getLifeTimeData, config);
-		const requestThree = axios.get(getFrequentActivities, config);
+		// const requestThree = axios.get(getFrequentActivities, config);
 		const requestFour = axios.get(getRecentActivites, config);
 		const requestFive = axios.get(getActiviteGoals, config);
 
 		axios
-			.all([requestOne, requestTwo, requestThree, requestFour, requestFive])
+			.all([requestOne, requestTwo, requestFour, requestFive])
 			.then(
 				axios.spread((...responses) => {
 					const responseOne = responses[0];
@@ -106,7 +106,7 @@ function App() {
 
 					setProfileData(responseOne.data.user);
 					setLifeTimeData(responseTwo.data.lifetime);
-					setFrequentActivities(responseThree.data);
+					// setFrequentActivities(responseThree.data);
 					setRecentActivites(responseFour.data);
 					setActiviteGoals(responseFive.data);
 					console.log(responseOne.data.user.fullName);
@@ -130,6 +130,7 @@ function App() {
 			{loginShown && <SignIn loginGuest={loginGuest} />}
 			{!loginShown && (
 				<SideBar
+					dailyActivies={dailyActivies}
 					profileData={profileData}
 					lifeTimeData={lifeTimeData}
 					mainDashHandler={mainDashHandler}
