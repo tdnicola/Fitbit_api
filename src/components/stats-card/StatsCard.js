@@ -10,32 +10,44 @@ const useStyles = makeStyles({
 		margin: '75px',
 		backgroundColor: 'white',
 		color: 'black',
+		overflow: 'visible',
 	},
-	bullet: {
-		display: 'inline-block',
-		margin: '0 2px',
-		transform: 'scale(0.8)',
+
+	cardImage: {
+		marginTop: -35,
+		height: 60,
+		backgroundColor: '#2196f3',
+		borderRadius: '5px',
+		width: '90px',
+		zIndex: '50',
 	},
-	title: {
-		fontSize: 14,
+	logo: {
+		marginLeft: '30px',
+		marginTop: '10px',
+		height: 30,
 	},
-	pos: {
-		marginBottom: 12,
+	content: {
+		left: '50px',
+		top: '50px',
+		zIndex: 1,
 	},
 });
 
-export default ({ title, lifeTimeData }) => {
+export default ({ title, lifeTimeData, logo }) => {
 	const classes = useStyles();
 
 	return (
-		<Card className={classes.root} variant='outlined'>
-			<CardContent>
-				<Typography variant='h5' component='h2'>
-					{title}
-				</Typography>
-				{lifeTimeData}
-				<Typography variant='body2' component='p'></Typography>
-			</CardContent>
-		</Card>
+		<div className={classes.container}>
+			<Card className={classes.root} variant='outlined'>
+				<CardContent>
+					<div className={classes.cardImage}>
+						<img src={logo} alt='logo' className={classes.logo} />
+					</div>
+					<Typography variant='h5' component='h3' className={classes.content}>
+						{title + lifeTimeData}
+					</Typography>
+				</CardContent>
+			</Card>
+		</div>
 	);
 };

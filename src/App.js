@@ -12,6 +12,8 @@ function App() {
 	const [mainDashInfo, setMainDashInfo] = useState(true);
 
 	const [profileData, setProfileData] = useState('');
+	const [weeklyStepsData, setWeeklyStepsData] = useState('');
+
 	const [lifeTimeData, setLifeTimeData] = useState('');
 	const [frequentActivities, setFrequentActivities] = useState('');
 	const [recentActivites, setRecentActivites] = useState('');
@@ -37,6 +39,7 @@ function App() {
 		setLoginShown(false);
 		setProfileData(mockProfileData.user);
 		setLifeTimeData(mockProfileData.lifetime);
+		setWeeklyStepsData(mockProfileData['activities-steps']);
 	};
 
 	useEffect(() => {
@@ -135,6 +138,7 @@ function App() {
 					dataTransfer={dataTransfer}
 					aboutMeButtonHandler={aboutMeButtonHandler}
 					aboutMeButton={aboutMeButton}
+					weeklyStepsData={weeklyStepsData}
 				/>
 			)}
 		</div>

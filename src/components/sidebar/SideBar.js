@@ -108,6 +108,7 @@ export default ({
 	mainDashInfo,
 	aboutMeButtonHandler,
 	aboutMeButton,
+	weeklyStepsData,
 }) => {
 	const classes = useStyles();
 	const theme = useTheme();
@@ -211,7 +212,12 @@ export default ({
 			</Drawer>
 			<div className={classes.content}>
 				{lifeTimeData && <LifeTimeData lifeTimeData={lifeTimeData} />}
-				{profileData && mainDashInfo && <MainPage profileData={profileData} />}
+				{profileData && mainDashInfo && (
+					<MainPage
+						profileData={profileData}
+						weeklyStepsData={weeklyStepsData}
+					/>
+				)}
 				{aboutMeButton && <AboutMe profileData={profileData} />}
 			</div>
 		</div>
