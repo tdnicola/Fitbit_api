@@ -300,6 +300,68 @@ const mockProfileData = {
 			name: 'Elliptical',
 		},
 	],
+
+	'activities-steps': [
+		{
+			dateTime: '2020-05-10',
+			value: '12284',
+		},
+		{
+			dateTime: '2020-05-11',
+			value: '10637',
+		},
+		{
+			dateTime: '2020-05-12',
+			value: '15590',
+		},
+		{
+			dateTime: '2020-05-13',
+			value: '13935',
+		},
+		{
+			dateTime: '2020-05-14',
+			value: '5886',
+		},
+		{
+			dateTime: '2020-05-15',
+			value: '10964',
+		},
+		{
+			dateTime: '2020-05-16',
+			value: '12075',
+		},
+	],
+
+	'activities-distance': [
+		{
+			dateTime: '2020-05-10',
+			value: '10.33155',
+		},
+		{
+			dateTime: '2020-05-11',
+			value: '8.04843',
+		},
+		{
+			dateTime: '2020-05-12',
+			value: '13.81823',
+		},
+		{
+			dateTime: '2020-05-13',
+			value: '12.092419999999999',
+		},
+		{
+			dateTime: '2020-05-14',
+			value: '4.4507699999999994',
+		},
+		{
+			dateTime: '2020-05-15',
+			value: '9.19925',
+		},
+		{
+			dateTime: '2020-05-16',
+			value: '11.78537',
+		},
+	],
 };
 
 export { mockProfileData };

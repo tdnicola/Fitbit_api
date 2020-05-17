@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
-import SideBar from './components/SideBar';
-import SignIn from './components/SignIn';
+import SideBar from './components/sidebar/SideBar';
+import SignIn from './components/sign-in/SignIn';
 import { mockProfileData } from './data/mockData';
 
 function App() {
@@ -16,10 +16,17 @@ function App() {
 	const [frequentActivities, setFrequentActivities] = useState('');
 	const [recentActivites, setRecentActivites] = useState('');
 	const [ActiviteGoals, setActiviteGoals] = useState('');
+	const [aboutMeButton, setAboutMeButton] = useState(false);
 
 	const mainDashHandler = (e) => {
 		e.preventDefault();
 		setMainDashInfo(!mainDashInfo);
+	};
+
+	const aboutMeButtonHandler = (e) => {
+		e.preventDefault();
+		setAboutMeButton(!aboutMeButton);
+		setMainDashInfo(false);
 	};
 
 	const loginGuest = (e) => {
@@ -73,8 +80,11 @@ function App() {
 		const getFrequentActivities = `https://api.fitbit.com/1/user/${user_Id}/activities/frequent.json`;
 		const getRecentActivites = `https://api.fitbit.com/1/user/${user_Id}/activities/recent.json`;
 		//daily goals
+
 		const getActiviteGoals = `https://api.fitbit.com/1/user/${user_Id}/activities/goals/daily.json`;
 
+		// weekly stats for distance/steps
+		// https://api.fitbit.com/1/user/3GTZLF/activities/distance/date/today/7d.json
 		const requestOne = axios.get(getProfileData, config);
 		const requestTwo = axios.get(getLifeTimeData, config);
 		const requestThree = axios.get(getFrequentActivities, config);
@@ -123,6 +133,8 @@ function App() {
 					mainDashInfo={mainDashInfo}
 					buttonDataTest={buttonDataTest}
 					dataTransfer={dataTransfer}
+					aboutMeButtonHandler={aboutMeButtonHandler}
+					aboutMeButton={aboutMeButton}
 				/>
 			)}
 		</div>

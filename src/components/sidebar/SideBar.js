@@ -1,5 +1,4 @@
 import React from 'react';
-import StatsCard from './StatsCard';
 
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -20,12 +19,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import PieChartIcon from '@material-ui/icons/PieChart';
-import TimelineIcon from '@material-ui/icons/Timeline';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
+//components
 import HomeIcon from '@material-ui/icons/Home';
-import MainPage from './MainPage';
+import MainPage from '../main-page/MainPage';
+import AboutMe from '../about-me/AboutMe';
+import LifeTimeData from '../lifetime-data/LifeTimeData';
 
 const drawerWidth = 240;
 
@@ -107,7 +106,8 @@ export default ({
 	lifeTimeData,
 	mainDashHandler,
 	mainDashInfo,
-	dataTransfer,
+	aboutMeButtonHandler,
+	aboutMeButton,
 }) => {
 	const classes = useStyles();
 	const theme = useTheme();
@@ -143,7 +143,7 @@ export default ({
 						<MenuIcon />
 					</IconButton>
 					<Typography variant='h6' noWrap>
-						Hello {profileData.fullName}
+						Hello {profileData.displayName}
 					</Typography>
 					<img
 						className={classes.avatarImg}
@@ -190,7 +190,7 @@ export default ({
 						button
 						key={'aboutMe'}
 						onClick={(e) => {
-							mainDashHandler(e);
+							aboutMeButtonHandler(e);
 						}}
 					>
 						<ListItemIcon>{<AccountCircleIcon />}</ListItemIcon>
@@ -210,31 +210,9 @@ export default ({
 				<Divider />
 			</Drawer>
 			<div className={classes.content}>
-				{lifeTimeData && (
-					<Grid container spacing={2}>
-						<Grid container item xs={4} spacing={1}>
-							<StatsCard
-								title={'Total Steps:'}
-								lifeTimeData={lifeTimeData.total.steps}
-							/>
-						</Grid>
-						<Grid container item xs={4} spacing={1}>
-							<StatsCard
-								title={'Total Floors:'}
-								lifeTimeData={lifeTimeData.total.floors}
-							/>
-						</Grid>
-						<Grid container item xs={4} spacing={1}>
-							<StatsCard
-								title={'Total Distance:'}
-								lifeTimeData={lifeTimeData.total.distance}
-							/>
-						</Grid>
-					</Grid>
-				)}
-				{profileData && (
-					<MainPage dataTransfer={dataTransfer} profileData={profileData} />
-				)}
+				{lifeTimeData && <LifeTimeData lifeTimeData={lifeTimeData} />}
+				{profileData && mainDashInfo && <MainPage profileData={profileData} />}
+				{aboutMeButton && <AboutMe profileData={profileData} />}
 			</div>
 		</div>
 	);
