@@ -18,19 +18,6 @@ import Badges from '../badges/Badges';
 import DailyStats from '../daily-stats/DailyStats';
 
 const useStyles = makeStyles({
-	root: {
-		// minWidth: 275,
-		width: '70%',
-		margin: '25px',
-		backgroundColor: '#03a9f4',
-		color: 'black',
-		fontSize: 14,
-	},
-	bullet: {
-		display: 'inline-block',
-		margin: '0 2px',
-		transform: 'scale(0.8)',
-	},
 	title: {
 		fontSize: 14,
 	},

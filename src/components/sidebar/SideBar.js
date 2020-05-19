@@ -20,6 +20,7 @@ import AssessmentIcon from '@material-ui/icons/Assessment';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import PieChartIcon from '@material-ui/icons/PieChart';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Button from '@material-ui/core/Button';
 //components
 import HomeIcon from '@material-ui/icons/Home';
 import MainPage from '../main-page/MainPage';
@@ -92,12 +93,18 @@ const useStyles = makeStyles((theme) => ({
 	content: {
 		flexGrow: 1,
 		margin: '20px',
+		marginTop: '100px',
 	},
 	avatarImg: {
 		borderRadius: '50%',
 		height: '35px',
 		float: 'right',
 		marginLeft: '15px',
+	},
+	logoutButton: {
+		float: 'right',
+		color: 'white',
+		margin: 5,
 	},
 }));
 
@@ -110,6 +117,7 @@ export default ({
 	aboutMeButton,
 	weeklyStepsData,
 	dailyActivies,
+	logOutButtonHandler,
 }) => {
 	const classes = useStyles();
 	const theme = useTheme();
@@ -152,6 +160,14 @@ export default ({
 						src='https://static0.fitbit.com/images/profile/defaultProfile_100.png'
 						alt='avatar'
 					/>
+					<Button
+						className={clsx(classes.logoutButton)}
+						onClick={(e) => {
+							logOutButtonHandler(e);
+						}}
+					>
+						Logout
+					</Button>
 				</Toolbar>
 			</AppBar>
 			<Drawer
@@ -212,7 +228,7 @@ export default ({
 				<Divider />
 			</Drawer>
 			<div className={classes.content}>
-				{lifeTimeData && <LifeTimeData lifeTimeData={lifeTimeData} />}
+				{/* {lifeTimeData && <LifeTimeData lifeTimeData={lifeTimeData} />} */}
 				{profileData && mainDashInfo && (
 					<MainPage
 						dailyActivies={dailyActivies}
@@ -220,7 +236,9 @@ export default ({
 						weeklyStepsData={weeklyStepsData}
 					/>
 				)}
-				{aboutMeButton && <AboutMe profileData={profileData} />}
+				{aboutMeButton && (
+					<AboutMe profileData={profileData} lifeTimeData={lifeTimeData} />
+				)}
 			</div>
 		</div>
 	);

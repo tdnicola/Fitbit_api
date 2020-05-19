@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 	root: {
 		width: '70%',
 		margin: '25px',
-		backgroundColor: '#03a9f4',
+		backgroundColor: '#3399CC',
 		color: 'black',
 		fontSize: 14,
 	},

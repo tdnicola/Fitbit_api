@@ -10,8 +10,9 @@ import {
 	Legend,
 	Bar,
 	Tooltip,
-	RadialBarChart,
-	RadialBar,
+	ComposedChart,
+	Area,
+	Line,
 } from 'recharts';
 
 const data = [
@@ -24,46 +25,46 @@ const data = [
 ];
 const data2 = [
 	{
-		name: '18-24',
-		uv: 31.47,
+		name: 'Page A',
+		uv: 4000,
 		pv: 2400,
-		fill: '#8884d8',
+		amt: 2400,
 	},
 	{
-		name: '25-29',
-		uv: 26.69,
-		pv: 4567,
-		fill: '#83a6ed',
-	},
-	{
-		name: '30-34',
-		uv: -15.69,
+		name: 'Page B',
+		uv: 3000,
 		pv: 1398,
-		fill: '#8dd1e1',
+		amt: 2210,
 	},
 	{
-		name: '35-39',
-		uv: 8.22,
+		name: 'Page C',
+		uv: 2000,
 		pv: 9800,
-		fill: '#82ca9d',
+		amt: 2290,
 	},
 	{
-		name: '40-49',
-		uv: -8.63,
+		name: 'Page D',
+		uv: 2780,
 		pv: 3908,
-		fill: '#a4de6c',
+		amt: 2000,
 	},
 	{
-		name: '50+',
-		uv: -2.63,
+		name: 'Page E',
+		uv: 1890,
 		pv: 4800,
-		fill: '#d0ed57',
+		amt: 2181,
 	},
 	{
-		name: 'unknow',
-		uv: 6.67,
-		pv: 4800,
-		fill: '#ffc658',
+		name: 'Page F',
+		uv: 2390,
+		pv: 3800,
+		amt: 2500,
+	},
+	{
+		name: 'Page G',
+		uv: 3490,
+		pv: 4300,
+		amt: 2100,
 	},
 ];
 const useStyles = makeStyles({
@@ -83,14 +84,15 @@ export default ({ dailyActivies }) => {
 	return (
 		<div>
 			<BarChart
-				className={classes.inlineCharts}
-				width={330}
-				height={250}
+				width={600}
+				height={300}
 				data={data}
+				className={classes.inlineCharts}
+				layout='vertical'
 			>
 				<CartesianGrid strokeDasharray='3 3' />
-				<XAxis dataKey='name' />
-				<YAxis />
+				<XAxis type='number' />
+				<YAxis dataKey='name' type='category' />
 				<Tooltip />
 				<Legend />
 				<Bar dataKey='pv' fill='#8884d8' />
@@ -124,34 +126,6 @@ export default ({ dailyActivies }) => {
 				<Bar dataKey='pv' fill='#8884d8' />
 				<Bar dataKey='uv' fill='#82ca9d' />
 			</BarChart>
-
-			<RadialBarChart
-				width={730}
-				height={250}
-				innerRadius='10%'
-				outerRadius='80%'
-				data={data2}
-				startAngle={180}
-				endAngle={0}
-				className={classes.graphCharts}
-			>
-				<RadialBar
-					minAngle={15}
-					label={{ fill: '#666', position: 'insideStart' }}
-					background
-					clockWise={true}
-					dataKey='uv'
-				/>
-				<Legend
-					iconSize={10}
-					width={120}
-					height={140}
-					layout='vertical'
-					verticalAlign='middle'
-					align='right'
-				/>
-				<Tooltip />
-			</RadialBarChart>
 		</div>
 	);
 };

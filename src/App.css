@@ -10,12 +10,6 @@
 }
 
 /* LOGIN */
-.loginView {
-	margin: auto;
-	background-color: #63b7af;
-	width: 35%;
-	height: 300px;
-}
 
 .fitBitLogin {
 	margin: 50px;
@@ -24,14 +18,3 @@
 	margin: 50px;
 }
 /* SIDEBAR */
-.sideBar {
-	text-align: center;
-	height: 100vh;
-	color: black;
-	padding: 5px;
-	width: 8%;
-	float: left;
-	flex-direction: column;
-	display: flex;
-	background-color: #abf0e9;
-}

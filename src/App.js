@@ -32,15 +32,18 @@ function App() {
 	};
 
 	const loginGuest = (e) => {
-		// window.location.href =
-		// 	'https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=22BQSB&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=604800';
-
 		e.preventDefault();
 		setLoginShown(false);
 		setProfileData(mockProfileData.user);
 		setLifeTimeData(mockProfileData.lifetime);
 		setWeeklyStepsData(mockProfileData['activities-steps']);
 		setDailyActivies(mockProfileData.summary);
+	};
+
+	const logOutButtonHandler = (e) => {
+		e.preventDefault();
+		localStorage.clear();
+		setLoginShown(true);
 	};
 
 	useEffect(() => {
@@ -117,14 +120,6 @@ function App() {
 			});
 	};
 
-	const dataTransfer = (e) => {
-		return profileData;
-	};
-
-	const buttonDataTest = (e) => {
-		e.preventDefault();
-		console.log(profileData.user);
-	};
 	return (
 		<div className='App'>
 			{loginShown && <SignIn loginGuest={loginGuest} />}
@@ -135,11 +130,10 @@ function App() {
 					lifeTimeData={lifeTimeData}
 					mainDashHandler={mainDashHandler}
 					mainDashInfo={mainDashInfo}
-					buttonDataTest={buttonDataTest}
-					dataTransfer={dataTransfer}
 					aboutMeButtonHandler={aboutMeButtonHandler}
 					aboutMeButton={aboutMeButton}
 					weeklyStepsData={weeklyStepsData}
+					logOutButtonHandler={logOutButtonHandler}
 				/>
 			)}
 		</div>
