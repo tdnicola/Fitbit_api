@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-
-import {
-	BarChart,
-	CartesianGrid,
-	XAxis,
-	YAxis,
-	Legend,
-	Bar,
-	Tooltip,
-	ComposedChart,
-	Area,
-	Line,
-} from 'recharts';
+import BarChart from '../bar-chart/BarChart';
+// import {
+// 	BarChart,
+// 	CartesianGrid,
+// 	XAxis,
+// 	YAxis,
+// 	Legend,
+// 	Bar,
+// 	Tooltip,
+// 	ComposedChart,
+// 	Area,
+// 	Line,
+// } from 'recharts';
 
 const data = [
 	{
@@ -73,17 +73,24 @@ const useStyles = makeStyles({
 		margin: 20,
 		fontSize: 14,
 	},
-	graphCharts: {
-		display: 'auto',
-		fontSize: 12,
-	},
 });
-export default ({ dailyActivies }) => {
+export default ({ dailyActivies, activitieGoals }) => {
 	const classes = useStyles();
-
+	console.log(activitieGoals, dailyActivies);
 	return (
 		<div>
 			<BarChart
+				width={350}
+				height={350}
+				data={data}
+				xDataKey={'name'}
+				barDataKey={'uv'}
+				secondBarDataKey={'pv'}
+				secondBarfill={'#2884d8'}
+				fill={'#8884d8'}
+				domain={[0, 10000]}
+			/>
+			{/* <BarChart
 				width={600}
 				height={300}
 				data={data}
@@ -96,7 +103,6 @@ export default ({ dailyActivies }) => {
 				<Tooltip />
 				<Legend />
 				<Bar dataKey='pv' fill='#8884d8' />
-				<Bar dataKey='uv' fill='#82ca9d' />
 			</BarChart>
 			<BarChart
 				className={classes.inlineCharts}
@@ -125,7 +131,7 @@ export default ({ dailyActivies }) => {
 				<Legend />
 				<Bar dataKey='pv' fill='#8884d8' />
 				<Bar dataKey='uv' fill='#82ca9d' />
-			</BarChart>
+			</BarChart> */}
 		</div>
 	);
 };

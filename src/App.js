@@ -17,12 +17,12 @@ function App() {
 	const [lifeTimeData, setLifeTimeData] = useState('');
 	const [dailyActivies, setDailyActivies] = useState('');
 	const [recentActivites, setRecentActivites] = useState('');
-	const [ActiviteGoals, setActiviteGoals] = useState('');
+	const [activitieGoals, setActivitieGoals] = useState('');
 	const [aboutMeButton, setAboutMeButton] = useState(false);
 
 	const mainDashHandler = (e) => {
 		e.preventDefault();
-		setMainDashInfo(!mainDashInfo);
+		setMainDashInfo(true);
 	};
 
 	const aboutMeButtonHandler = (e) => {
@@ -38,6 +38,7 @@ function App() {
 		setLifeTimeData(mockProfileData.lifetime);
 		setWeeklyStepsData(mockProfileData['activities-steps']);
 		setDailyActivies(mockProfileData.summary);
+		setActivitieGoals(mockProfileData.goals);
 	};
 
 	const logOutButtonHandler = (e) => {
@@ -111,7 +112,7 @@ function App() {
 					setLifeTimeData(responseTwo.data.lifetime);
 					// setFrequentActivities(responseThree.data);
 					setRecentActivites(responseFour.data);
-					setActiviteGoals(responseFive.data);
+					setActivitieGoals(responseFive.data);
 					console.log(responseOne.data.user.fullName);
 				})
 			)
@@ -134,6 +135,7 @@ function App() {
 					aboutMeButton={aboutMeButton}
 					weeklyStepsData={weeklyStepsData}
 					logOutButtonHandler={logOutButtonHandler}
+					activitieGoals={activitieGoals}
 				/>
 			)}
 		</div>

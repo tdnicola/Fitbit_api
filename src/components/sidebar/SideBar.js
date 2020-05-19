@@ -118,6 +118,7 @@ export default ({
 	weeklyStepsData,
 	dailyActivies,
 	logOutButtonHandler,
+	activitieGoals,
 }) => {
 	const classes = useStyles();
 	const theme = useTheme();
@@ -234,6 +235,7 @@ export default ({
 						dailyActivies={dailyActivies}
 						profileData={profileData}
 						weeklyStepsData={weeklyStepsData}
+						activitieGoals={activitieGoals}
 					/>
 				)}
 				{aboutMeButton && (
