@@ -9,6 +9,7 @@ import {
 	Bar,
 	Tooltip,
 } from 'recharts';
+
 export default ({
 	width,
 	height,

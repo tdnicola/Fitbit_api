@@ -4,15 +4,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
-import BarChart from '../bar-chart/BarChart';
+import BarChart from '../charts/BarChart';
 import Grid from '@material-ui/core/Grid';
 
 // Components
 import StatsCard from '../stats-card/StatsCard';
 import Badges from '../badges/Badges';
 import DailyStats from '../daily-stats/DailyStats';
+import PieChart from '../charts/PieChart';
 
-//SVG IMAgES
+//SVG IMAGES
 import distance from '../../images/noun_distance_939669.svg';
 import stairs from '../../images/noun_steps_249968.svg';
 import steps from '../../images/noun_steps_3105633.svg';
@@ -87,6 +88,7 @@ function MainPage({
 					dailyActivities={dailyActivities}
 					activityGoals={activityGoals}
 				/>
+				<PieChart />
 			</Container>
 		</React.Fragment>
 	);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import BarChart from '../bar-chart/BarChart';
+import BarChart from '../charts/BarChart';
 import Grid from '@material-ui/core/Grid';
 
 const data = [
