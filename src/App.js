@@ -15,9 +15,9 @@ function App() {
 	const [weeklyStepsData, setWeeklyStepsData] = useState('');
 
 	const [lifeTimeData, setLifeTimeData] = useState('');
-	const [dailyActivies, setDailyActivies] = useState('');
-	const [recentActivites, setRecentActivites] = useState('');
-	const [activitieGoals, setActivitieGoals] = useState('');
+	const [dailyActivities, setDailyActivies] = useState('');
+	const [recentActivities, setRecentActivites] = useState('');
+	const [activityGoals, setActivityGoals] = useState('');
 	const [aboutMeButton, setAboutMeButton] = useState(false);
 
 	const mainDashHandler = (e) => {
@@ -38,7 +38,7 @@ function App() {
 		setLifeTimeData(mockProfileData.lifetime);
 		setWeeklyStepsData(mockProfileData['activities-steps']);
 		setDailyActivies(mockProfileData.summary);
-		setActivitieGoals(mockProfileData.goals);
+		setActivityGoals(mockProfileData.goals);
 	};
 
 	const logOutButtonHandler = (e) => {
@@ -112,7 +112,7 @@ function App() {
 					setLifeTimeData(responseTwo.data.lifetime);
 					// setFrequentActivities(responseThree.data);
 					setRecentActivites(responseFour.data);
-					setActivitieGoals(responseFive.data);
+					setActivityGoals(responseFive.data);
 					console.log(responseOne.data.user.fullName);
 				})
 			)
@@ -126,7 +126,7 @@ function App() {
 			{loginShown && <SignIn loginGuest={loginGuest} />}
 			{!loginShown && (
 				<SideBar
-					dailyActivies={dailyActivies}
+					dailyActivities={dailyActivities}
 					profileData={profileData}
 					lifeTimeData={lifeTimeData}
 					mainDashHandler={mainDashHandler}
@@ -135,7 +135,7 @@ function App() {
 					aboutMeButton={aboutMeButton}
 					weeklyStepsData={weeklyStepsData}
 					logOutButtonHandler={logOutButtonHandler}
-					activitieGoals={activitieGoals}
+					activityGoals={activityGoals}
 				/>
 			)}
 		</div>

@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 	},
 });
 
-export default ({ title, lifeTimeData, logo }) => {
+export default ({ title, data, logo }) => {
 	const classes = useStyles();
 
 	return (
@@ -44,7 +44,7 @@ export default ({ title, lifeTimeData, logo }) => {
 						<img src={logo} alt='logo' className={classes.logo} />
 					</div>
 					<Typography variant='h5' component='h3' className={classes.content}>
-						{title + lifeTimeData}
+						{title + data}
 					</Typography>
 				</CardContent>
 			</Card>

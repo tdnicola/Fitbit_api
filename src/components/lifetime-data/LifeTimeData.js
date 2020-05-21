@@ -9,24 +9,24 @@ import steps from '../../images/noun_steps_3105633.svg';
 export default ({ lifeTimeData }) => {
 	return (
 		<Grid container spacing={2}>
-			<Grid container item xs={4} spacing={1}>
+			<Grid item xs={4} spacing={1}>
 				<StatsCard
 					title={'Total Steps: '}
-					lifeTimeData={lifeTimeData.total.steps}
+					data={lifeTimeData.total.steps}
 					logo={steps}
 				/>
 			</Grid>
-			<Grid container item xs={4} spacing={1}>
+			<Grid item xs={4} spacing={1}>
 				<StatsCard
 					title={'Total Floors: '}
-					lifeTimeData={lifeTimeData.total.floors}
+					data={lifeTimeData.total.floors}
 					logo={stairs}
 				/>
 			</Grid>
-			<Grid container item xs={4} spacing={1}>
+			<Grid item xs={4} spacing={1}>
 				<StatsCard
 					title={'Total Distance: '}
-					lifeTimeData={lifeTimeData.total.distance}
+					data={lifeTimeData.total.distance}
 					logo={distance}
 				/>
 			</Grid>

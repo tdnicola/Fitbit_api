@@ -2,18 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import BarChart from '../bar-chart/BarChart';
-// import {
-// 	BarChart,
-// 	CartesianGrid,
-// 	XAxis,
-// 	YAxis,
-// 	Legend,
-// 	Bar,
-// 	Tooltip,
-// 	ComposedChart,
-// 	Area,
-// 	Line,
-// } from 'recharts';
+import Grid from '@material-ui/core/Grid';
 
 const data = [
 	{
@@ -23,50 +12,7 @@ const data = [
 		uv: 3500,
 	},
 ];
-const data2 = [
-	{
-		name: 'Page A',
-		uv: 4000,
-		pv: 2400,
-		amt: 2400,
-	},
-	{
-		name: 'Page B',
-		uv: 3000,
-		pv: 1398,
-		amt: 2210,
-	},
-	{
-		name: 'Page C',
-		uv: 2000,
-		pv: 9800,
-		amt: 2290,
-	},
-	{
-		name: 'Page D',
-		uv: 2780,
-		pv: 3908,
-		amt: 2000,
-	},
-	{
-		name: 'Page E',
-		uv: 1890,
-		pv: 4800,
-		amt: 2181,
-	},
-	{
-		name: 'Page F',
-		uv: 2390,
-		pv: 3800,
-		amt: 2500,
-	},
-	{
-		name: 'Page G',
-		uv: 3490,
-		pv: 4300,
-		amt: 2100,
-	},
-];
+
 const useStyles = makeStyles({
 	inlineCharts: {
 		display: 'inline',
@@ -74,64 +20,61 @@ const useStyles = makeStyles({
 		fontSize: 14,
 	},
 });
-export default ({ dailyActivies, activitieGoals }) => {
+export default ({ dailyActivities, activityGoals }) => {
 	const classes = useStyles();
-	console.log(activitieGoals, dailyActivies);
+	console.log(activityGoals, dailyActivities);
+	var chartStepStats = [
+		{
+			name: 'Daily steps goal',
+			'Daily steps': dailyActivities.steps,
+			'Goal steps': activityGoals.steps,
+		},
+	];
+	// activitieGoals.steps vs dailyActivities.steps
+	// activitieGoals.floors vs dailyActivities.floors
 	return (
 		<div>
-			<BarChart
-				width={350}
-				height={350}
-				data={data}
-				xDataKey={'name'}
-				barDataKey={'uv'}
-				secondBarDataKey={'pv'}
-				secondBarfill={'#2884d8'}
-				fill={'#8884d8'}
-				domain={[0, 10000]}
-			/>
-			{/* <BarChart
-				width={600}
-				height={300}
-				data={data}
-				className={classes.inlineCharts}
-				layout='vertical'
-			>
-				<CartesianGrid strokeDasharray='3 3' />
-				<XAxis type='number' />
-				<YAxis dataKey='name' type='category' />
-				<Tooltip />
-				<Legend />
-				<Bar dataKey='pv' fill='#8884d8' />
-			</BarChart>
-			<BarChart
-				className={classes.inlineCharts}
-				width={330}
-				height={250}
-				data={data}
-			>
-				<CartesianGrid strokeDasharray='3 3' />
-				<XAxis dataKey='name' />
-				<YAxis />
-				<Tooltip />
-				<Legend />
-				<Bar dataKey='pv' fill='#8884d8' />
-				<Bar dataKey='uv' fill='#82ca9d' />
-			</BarChart>
-			<BarChart
-				className={classes.inlineCharts}
-				width={330}
-				height={250}
-				data={data}
-			>
-				<CartesianGrid strokeDasharray='3 3' />
-				<XAxis dataKey='name' />
-				<YAxis />
-				<Tooltip />
-				<Legend />
-				<Bar dataKey='pv' fill='#8884d8' />
-				<Bar dataKey='uv' fill='#82ca9d' />
-			</BarChart> */}
+			<Grid container spacing={2}>
+				<Grid key={5}>
+					<BarChart
+						width={350}
+						height={350}
+						data={data}
+						xDataKey={'name'}
+						barDataKey={'uv'}
+						secondBarDataKey={'pv'}
+						secondBarfill={'#2884d8'}
+						fill={'#8884d8'}
+						domain={[0, 10000]}
+					/>
+				</Grid>
+				<Grid key={5}>
+					<BarChart
+						width={350}
+						height={350}
+						data={data}
+						xDataKey={'name'}
+						barDataKey={'uv'}
+						secondBarDataKey={'pv'}
+						secondBarfill={'#2884d8'}
+						fill={'#8884d8'}
+						domain={[0, 10000]}
+					/>
+				</Grid>
+				<Grid key={5}>
+					<BarChart
+						width={350}
+						height={350}
+						data={chartStepStats}
+						xDataKey={'name'}
+						barDataKey={'Daily steps'}
+						secondBarDataKey={'Goal steps'}
+						secondBarfill={'#2884d8'}
+						fill={'#8884d8'}
+						domain={[0, 20000]}
+					/>
+				</Grid>
+			</Grid>
 		</div>
 	);
 };
