@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
-import BarChart from '../charts/BarChart';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
+
+//components
+import BarChart from '../charts/BarChart';
+import PieChart from '../charts/PieChart';
 
 const data = [
 	{
@@ -13,16 +14,7 @@ const data = [
 	},
 ];
 
-const useStyles = makeStyles({
-	inlineCharts: {
-		display: 'inline',
-		margin: 20,
-		fontSize: 14,
-	},
-});
-export default ({ dailyActivities, activityGoals }) => {
-	const classes = useStyles();
-	console.log(activityGoals, dailyActivities);
+export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 	var chartStepStats = [
 		{
 			name: 'Daily steps goal',
@@ -30,12 +22,46 @@ export default ({ dailyActivities, activityGoals }) => {
 			'Goal steps': activityGoals.steps,
 		},
 	];
+
+	var pieGraphSteps = [
+		{
+			name: 'Steps taken',
+			value: dailyActivities.steps,
+		},
+		{
+			name: 'Steps left until goal',
+			value: activityGoals.steps - dailyActivities.steps,
+		},
+	];
+
+	var pieGraphFloors = [
+		{
+			name: 'Floors climbed',
+			value: dailyActivities.floors,
+		},
+		{
+			name: 'Floors left',
+			value: activityGoals.floors - activityGoals.floors,
+		},
+	];
+
+	var pieGraphDistance = [
+		{
+			name: 'Distance',
+			value: dailyDistance.distance,
+		},
+		{
+			name: 'Distance left',
+			value: activityGoals.distance - dailyDistance.distance,
+		},
+	];
+
 	// activitieGoals.steps vs dailyActivities.steps
 	// activitieGoals.floors vs dailyActivities.floors
 	return (
 		<div>
 			<Grid container spacing={2}>
-				<Grid key={5}>
+				{/* <Grid key={5}>
 					<BarChart
 						width={350}
 						height={350}
@@ -70,6 +96,46 @@ export default ({ dailyActivities, activityGoals }) => {
 						barDataKey={'Daily steps'}
 						secondBarDataKey={'Goal steps'}
 						secondBarfill={'#2884d8'}
+						fill={'#8884d8'}
+						domain={[0, 20000]}
+					/>
+				</Grid> */}
+				<Grid key={5}>
+					Steps:
+					<PieChart
+						width={350}
+						height={350}
+						data={pieGraphSteps}
+						dataKey={'value'}
+						nameKey={'name'}
+						fill={'#8884d8'}
+						domain={[0, 20000]}
+					/>
+				</Grid>
+				<Grid key={5}>
+					Today's Floors:
+					{activityGoals.floors - activityGoals.floors <= 0 ? (
+						<div>Congrats! No floors to climb left!</div>
+					) : (
+						<PieChart
+							width={350}
+							height={350}
+							data={pieGraphFloors}
+							dataKey={'value'}
+							nameKey={'name'}
+							fill={'#8884d8'}
+							domain={[0, 20000]}
+						/>
+					)}
+				</Grid>
+				<Grid key={5}>
+					Today's Distance:
+					<PieChart
+						width={350}
+						height={350}
+						data={pieGraphDistance}
+						dataKey={'value'}
+						nameKey={'name'}
 						fill={'#8884d8'}
 						domain={[0, 20000]}
 					/>

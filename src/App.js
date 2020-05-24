@@ -31,7 +31,7 @@ function App() {
 		setMainDashInfo(false);
 	};
 
-	const loginGuest = (e) => {
+	const loginGuestHandler = (e) => {
 		e.preventDefault();
 		setLoginShown(false);
 		setProfileData(mockProfileData.user);
@@ -123,7 +123,7 @@ function App() {
 
 	return (
 		<div className='App'>
-			{loginShown && <SignIn loginGuest={loginGuest} />}
+			{loginShown && <SignIn loginGuest={loginGuestHandler} />}
 			{!loginShown && (
 				<SideBar
 					dailyActivities={dailyActivities}

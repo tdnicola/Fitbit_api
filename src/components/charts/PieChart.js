@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
+import { PieChart, Pie, Cell, Legend, Line } from 'recharts';
 
-export default ({ height, width, data, colors, datakey, name }) => {
+export default ({ height, width, data, colors, dataKey, nameKey }) => {
 	const data01 = [
 		{
 			name: 'Group A',
@@ -25,16 +25,17 @@ export default ({ height, width, data, colors, datakey, name }) => {
 	];
 	const testColors = ['#8884d8', '#2884d8'];
 	return (
-		<PieChart width={730} height={250}>
+		<PieChart width={width} height={height}>
 			<Pie
-				data={data01}
-				dataKey='value'
-				nameKey='name'
+				data={data}
+				dataKey={dataKey}
+				nameKey={nameKey}
 				cx='50%'
 				cy='50%'
-				outerRadius={50}
-				fill='#8884d8'
+				innerRadius={50}
+				label
 			>
+				<Line strokeWidth={1.5} />
 				{data01.map((entry, index) => (
 					<Cell key={`cell-${index}`} fill={testColors[index]} />
 				))}

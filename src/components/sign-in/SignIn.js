@@ -8,19 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-function Copyright() {
-	return (
-		<Typography variant='body2' color='textSecondary' align='center'>
-			{'Copyright © '}
-			<Link color='inherit' href='https://tonynicola.com/'>
-				TonyNicola.com
-			</Link>{' '}
-			{new Date().getFullYear()}
-			{'.'}
-		</Typography>
-	);
-}
-
 const useStyles = makeStyles((theme) => ({
 	paper: {
 		marginTop: theme.spacing(8),
@@ -45,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default ({ loginGuest }) => {
+export default ({ loginGuestHandler }) => {
 	const classes = useStyles();
 
 	return (
@@ -76,15 +63,11 @@ export default ({ loginGuest }) => {
 					variant='contained'
 					color='primary'
 					className={classes.submit}
-					onClick={(e) => loginGuest(e)}
+					onClick={(e) => loginGuestHandler(e)}
 				>
 					Continue as Guest
 				</Button>
 			</div>
-
-			<Box mt={8}>
-				<Copyright />
-			</Box>
 		</Container>
 	);
 };
