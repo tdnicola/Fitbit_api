@@ -1,18 +1,37 @@
 'use strict';
 
-module.exports.hello = async event => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
+const axios = require('axios');
+const qs = require('qs');
+const config = require('./config');
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
+module.exports.getAccessToken = async (event) => {
+	const baseInfo = new Buffer(`${config.id}:${config.secret}`).toString(
+		'base64'
+	);
+
+	const MEETUP_OAUTH_URL = 'https://api.fitbit.com/oauth2/token';
+	const data = {
+		grant_type: 'authorization_code',
+		code: event.pathParameters.code,
+		clientId: '22BQSB',
+		redirect_uri: 'http://localhost:3000/',
+	};
+
+	const info = await axios({
+		method: 'post',
+		url: MEETUP_OAUTH_URL,
+		headers: {
+			Authorization: `Basic ${baseInfo}`,
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		data: qs.stringify(data),
+	});
+
+	return {
+		statusCode: 200,
+		body: JSON.stringify({
+			access_token: info.data.access_token,
+			refresh_token: info.data.refresh_token,
+		}),
+	};
 };
