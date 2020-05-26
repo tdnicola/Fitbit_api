@@ -6,6 +6,7 @@ const config = require('./config');
 const FITBIT_OAUTH_URL = 'https://api.fitbit.com/oauth2/token';
 
 module.exports.getAccessToken = async (event) => {
+	//fitbit requires id and secret to be concatenated with a colon and in base64
 	const baseInfo = new Buffer(`${config.id}:${config.secret}`).toString(
 		'base64'
 	);
@@ -36,6 +37,8 @@ module.exports.getAccessToken = async (event) => {
 		body: JSON.stringify({
 			access_token: info.data.access_token,
 			refresh_token: info.data.refresh_token,
+			expires_in: info.data.expires_in,
+			user_id: info.data.user_id,
 		}),
 	};
 };
@@ -70,6 +73,8 @@ module.exports.refreshAccessToken = async (event) => {
 		body: JSON.stringify({
 			access_token: info.data.access_token,
 			refresh_token: info.data.refresh_token,
+			expires_in: info.data.expires_in,
+			user_id: info.data.user_id,
 		}),
 	};
 };

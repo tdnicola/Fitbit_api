@@ -31,6 +31,7 @@ function MainPage({
 	const dailyDistance = dailyActivities.distances.find(
 		(x) => x.activity === 'total'
 	);
+
 	return (
 		<React.Fragment>
 			<CssBaseline />

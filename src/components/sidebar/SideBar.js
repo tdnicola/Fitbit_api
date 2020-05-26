@@ -157,7 +157,7 @@ export default ({
 					</Typography>
 					<img
 						className={classes.avatarImg}
-						src='https://static0.fitbit.com/images/profile/defaultProfile_100.png'
+						src={profileData.avatar640}
 						alt='avatar'
 					/>
 					<Button
@@ -229,7 +229,7 @@ export default ({
 			</Drawer>
 			<div className={classes.content}>
 				{/* {lifeTimeData && <LifeTimeData lifeTimeData={lifeTimeData} />} */}
-				{profileData && mainDashInfo && (
+				{dailyActivities && mainDashInfo && (
 					<MainPage
 						dailyActivities={dailyActivities}
 						profileData={profileData}
