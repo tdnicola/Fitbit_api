@@ -10,9 +10,6 @@ import { getOrRenewAccessToken } from './components/api/api';
 import { mockProfileData } from './mockData/mockData';
 
 function App() {
-	const [accessToken, setAccessToken] = useState('');
-	const [refreshToken, setRefreshToken] = useState('');
-	const [userId, setUserId] = useState('1st');
 	const [loginShown, setLoginShown] = useState(true);
 	const [mainDashInfo, setMainDashInfo] = useState(true);
 
@@ -50,56 +47,40 @@ function App() {
 		e.preventDefault();
 		localStorage.clear();
 		setLoginShown(true);
+		window.location.href = 'http://localhost:3000';
 	};
 
 	useEffect(() => {
-		if (window.location.href === 'http://localhost:3000/') {
+		if (window.location.href === 'http://localhost:3000') {
 			return;
 		} else {
-			let accessToken = localStorage.getItem('access_token');
+			//may have code attached to url
+			const accessToken = localStorage.getItem('access_token');
 			const lastSavedTime = localStorage.getItem('last_saved_time');
 
+			//no access token previously stored, retreive code
 			if (!accessToken) {
 				const searchParams = new URLSearchParams(window.location.search);
 				const code = searchParams.get('code');
-				getOrRenewAccessToken('get', code);
-				console.log(accessToken);
-				// const lambdaURL =
-				// 	'https://aa1n35yco4.execute-api.us-east-1.amazonaws.com/dev/api/token/' +
-				// 	code;
 
-				// // getting token from aws with code from url
-				// axios.get(lambdaURL).then((e) => {
-				// 	const aws_token = e.data.access_token;
-				// 	const aws_refresh = e.data.refresh_token;
-				// 	setAccessToken(aws_token);
-				// 	setRefreshToken(aws_refresh);
-				// 	localStorage.setItem('access_token', aws_token);
-				// 	localStorage.setItem('refresh_token', aws_refresh);
-				// 	localStorage.setItem('last_saved_time', Date.now());
-				// 	setLoginShown(false);
-				// });
-				// // 	// getUserData(user_Id, access_token_code);
+				if (!code) {
+					console.log('no code');
+					return;
+				}
 
-				// localStorage.setItem('access_token', access_token_code);
-				// localStorage.setItem('user_id', user_Id);
-				setLoginShown(false);
-				getUserData();
-				console.log('!noaccesstoken route');
+				const getAccessCode = getOrRenewAccessToken('get', code);
+				getAccessCode.then((code) => {
+					getUserData(code);
+					setLoginShown(false);
+				});
+
+				//refreshing token
 			} else if (accessToken && Date.now() - lastSavedTime > 28800000) {
 				let refreshToken = localStorage.getItem('refresh_token');
 
 				getOrRenewAccessToken('renew', refreshToken);
 				console.log('datenow route');
 				setLoginShown(false);
-
-				// const user_Id = localStorage.getItem('user');
-				// const access_token_code = localStorage.getItem('token');
-				// setLoginShown(false);
-				// getUserData(user_Id, access_token_code);
-			} else {
-				setLoginShown(false);
-				getUserData(accessToken);
 			}
 		}
 	}, []);
@@ -108,7 +89,7 @@ function App() {
 		const config = {
 			headers: { Authorization: `Bearer ${accessToken}` },
 		};
-
+		console.log('getuserdata function');
 		const getProfileData = `https://api.fitbit.com/1/user/-/profile.json`;
 
 		const getLifeTimeData = `https://api.fitbit.com/1/user/-/activities.json`;
@@ -147,7 +128,7 @@ function App() {
 
 	return (
 		<div className='App'>
-			{loginShown && <SignIn loginGuest={loginGuestHandler} />}
+			{loginShown && <SignIn loginGuestHandler={loginGuestHandler} />}
 			{!loginShown && (
 				<SideBar
 					dailyActivities={dailyActivities}
