@@ -1,9 +1,21 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-
+import StarIcon from '@material-ui/icons/Star';
 //components
 import BarChart from '../charts/BarChart';
 import PieChart from '../charts/PieChart';
+
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+	completedStar: {
+		fontSize: 80,
+		// justifyContent: 'center',
+		margin: 'auto',
+		width: '100%',
+		// textAlign: 'center',
+	},
+}));
 
 const data = [
 	{
@@ -15,6 +27,8 @@ const data = [
 ];
 
 export default ({ dailyActivities, activityGoals, dailyDistance }) => {
+	const classes = useStyles();
+
 	var chartStepStats = [
 		{
 			name: 'Daily steps goal',
@@ -41,13 +55,13 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 		},
 		{
 			name: 'Floors left',
-			value: activityGoals.floors - activityGoals.floors,
+			value: activityGoals.floors - dailyActivities.floors,
 		},
 	];
 
 	var pieGraphDistance = [
 		{
-			name: 'Distance',
+			name: 'Distance Travelled',
 			value: dailyDistance.distance,
 		},
 		{
@@ -56,12 +70,15 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 		},
 	];
 
-	// activitieGoals.steps vs dailyActivities.steps
-	// activitieGoals.floors vs dailyActivities.floors
 	return (
 		<div>
-			<Grid container spacing={2}>
-				{/* <Grid key={5}>
+			{dailyActivities.steps <= 0 ? (
+				<div>
+					Hmmm it looks like you may need to upload your data to fitbit..
+				</div>
+			) : (
+				<Grid container spacing={2}>
+					{/* <Grid key={5}>
 					<BarChart
 						width={350}
 						height={350}
@@ -100,47 +117,71 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 						domain={[0, 20000]}
 					/>
 				</Grid> */}
-				<Grid key={5}>
-					Steps:
-					<PieChart
-						width={350}
-						height={350}
-						data={pieGraphSteps}
-						dataKey={'value'}
-						nameKey={'name'}
-						fill={'#8884d8'}
-						domain={[0, 20000]}
-					/>
+					<Grid key={5}>
+						Steps:
+						{activityGoals.steps - dailyActivities.steps <= 0 ? (
+							<div>
+								<StarIcon className={classes.completedStar} />
+								<br />
+								Congrats! Goal Achieved!
+							</div>
+						) : (
+							<div>
+								<PieChart
+									width={350}
+									height={350}
+									data={pieGraphSteps}
+									dataKey={'value'}
+									nameKey={'name'}
+									fill={'#8884d8'}
+									domain={[0, 20000]}
+								/>
+							</div>
+						)}
+					</Grid>
+					<Grid key={5}>
+						Today's Floors:
+						{activityGoals.floors - dailyActivities.floors <= 0 ? (
+							<div>
+								<StarIcon className={classes.completedStar} />
+								<br />
+								Congrats! Goal Achieved!
+								{console.log(dailyDistance, dailyDistance.floors)}
+							</div>
+						) : (
+							<PieChart
+								width={350}
+								height={350}
+								data={pieGraphFloors}
+								dataKey={'value'}
+								nameKey={'name'}
+								fill={'#8884d8'}
+								domain={[0, 20000]}
+							/>
+						)}
+					</Grid>
+					<Grid key={5}>
+						Today's Distance:
+						{activityGoals.distance - dailyDistance.distance <= 0 ? (
+							<div>
+								<StarIcon className={classes.completedStar} />
+								<br />
+								Congrats! Goal Achieved!
+							</div>
+						) : (
+							<PieChart
+								width={350}
+								height={350}
+								data={pieGraphDistance}
+								dataKey={'value'}
+								nameKey={'name'}
+								fill={'#8884d8'}
+								domain={[0, 20000]}
+							/>
+						)}
+					</Grid>
 				</Grid>
-				<Grid key={5}>
-					Today's Floors:
-					{activityGoals.floors - activityGoals.floors <= 0 ? (
-						<div>Congrats! No floors to climb left!</div>
-					) : (
-						<PieChart
-							width={350}
-							height={350}
-							data={pieGraphFloors}
-							dataKey={'value'}
-							nameKey={'name'}
-							fill={'#8884d8'}
-							domain={[0, 20000]}
-						/>
-					)}
-				</Grid>
-				<Grid key={5}>
-					Today's Distance:
-					<PieChart
-						width={350}
-						height={350}
-						data={pieGraphDistance}
-						dataKey={'value'}
-						nameKey={'name'}
-						fill={'#8884d8'}
-						domain={[0, 20000]}
-					/>
-				</Grid>
-			</Grid>
+			)}
 		</div>
 	);
 };

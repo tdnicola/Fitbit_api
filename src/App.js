@@ -51,7 +51,7 @@ function App() {
 	};
 
 	useEffect(() => {
-		if (window.location.href === 'http://localhost:3000') {
+		if (window.location.href === 'http://localhost:3000/') {
 			return;
 		} else {
 			//may have code attached to url
@@ -99,26 +99,29 @@ function App() {
 		const getTodaySummary = `https://api.fitbit.com/1/user/-/activities/date/today.json`;
 
 		// weekly stats for distance/steps
-		// https://api.fitbit.com/1/user/3GTZLF/activities/distance/date/today/7d.json
+		const get7DaySteps = `https://api.fitbit.com/1/user/-/activities/steps/date/today/7d.json`;
 		const requestOne = axios.get(getProfileData, config);
 		const requestTwo = axios.get(getLifeTimeData, config);
 		const requestThree = axios.get(getTodaySummary, config);
-		const requestFour = axios.get(getRecentActivites, config);
+		const requestFour = axios.get(get7DaySteps, config);
 
 		axios
-			.all([requestOne, requestTwo, requestThree])
+			.all([requestOne, requestTwo, requestThree, requestFour])
 			.then(
 				axios.spread((...responses) => {
 					const responseOne = responses[0];
 					const responseTwo = responses[1];
 					const responseThree = responses[2];
 					const responseFour = responses[3];
+					// const responseFour = responses[3];
 
 					setProfileData(responseOne.data.user);
 					setLifeTimeData(responseTwo.data.lifetime);
 					setDailyActivies(responseThree.data.summary);
-					setRecentActivites(responseFour.data);
+					// setRecentActivites(responseFour.data);
 					setActivityGoals(responseThree.data.goals);
+					setWeeklyStepsData(responseFour.data);
+					console.log('weekly distance: ' + responseFour.data);
 				})
 			)
 			.catch((errors) => {

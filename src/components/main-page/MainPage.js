@@ -23,7 +23,9 @@ function MainPage({
 }) {
 	// const classes = useStyles();
 
-	for (let obj of weeklyStepsData) {
+	let updatedObjValuesofSteps = weeklyStepsData;
+
+	for (let obj of updatedObjValuesofSteps) {
 		obj['steps'] = obj['value'];
 	}
 
@@ -38,21 +40,21 @@ function MainPage({
 			<Container maxWidth='lg'>
 				Today's Info:
 				<Grid container spacing={2}>
-					<Grid item xs={4} spacing={1}>
+					<Grid item xs={4}>
 						<StatsCard
 							title={"Today's Steps: "}
 							data={dailyActivities.steps}
 							logo={steps}
 						/>
 					</Grid>
-					<Grid item xs={4} spacing={1}>
+					<Grid item xs={4}>
 						<StatsCard
 							title={"Today's Floors: "}
 							data={dailyActivities.floors}
 							logo={stairs}
 						/>
 					</Grid>
-					<Grid item xs={4} spacing={1}>
+					<Grid item xs={4}>
 						<StatsCard
 							title={"Today's Distance: "}
 							data={dailyDistance.distance}
@@ -60,20 +62,20 @@ function MainPage({
 						/>
 					</Grid>
 				</Grid>
-				Weekly Steps
-				<BarChart
-					width={730}
-					height={350}
-					data={weeklyStepsData}
-					xDataKey={'dateTime'}
-					barDataKey={'steps'}
-					fill={'#8884d8'}
-					domain={[0, 20000]}
-				/>
 				<DailyStats
 					dailyActivities={dailyActivities}
 					activityGoals={activityGoals}
 					dailyDistance={dailyDistance}
+				/>
+				Weekly Steps
+				<BarChart
+					width={730}
+					height={350}
+					data={updatedObjValuesofSteps}
+					xDataKey={'dateTime'}
+					barDataKey={'steps'}
+					fill={'#8884d8'}
+					domain={[0, 20000]}
 				/>
 				<PieChart />
 			</Container>

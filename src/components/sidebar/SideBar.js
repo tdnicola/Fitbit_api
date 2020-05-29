@@ -229,7 +229,7 @@ export default ({
 			</Drawer>
 			<div className={classes.content}>
 				{/* {lifeTimeData && <LifeTimeData lifeTimeData={lifeTimeData} />} */}
-				{dailyActivities && mainDashInfo && (
+				{activityGoals && mainDashInfo && (
 					<MainPage
 						dailyActivities={dailyActivities}
 						profileData={profileData}
