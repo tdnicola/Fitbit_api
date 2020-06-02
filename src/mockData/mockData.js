@@ -364,6 +364,41 @@ const mockProfileData = {
 			value: '11.78537',
 		},
 	],
+	friends: [
+		{
+			attributes: {
+				name: 'Haley P.',
+				friend: true,
+				avatar:
+					'https://d6y8zfzc2qfsl.cloudfront.net/20F812C7-0D67-A690-7BC9-43AB4CD17BF8_profile_150_square.jpg',
+				child: false,
+			},
+			id: '6YR958',
+			type: 'person',
+		},
+		{
+			attributes: {
+				name: 'Patrick S.',
+				friend: true,
+				avatar:
+					'https://d6y8zfzc2qfsl.cloudfront.net/2E419038-DC37-84FE-FE4A-A07880EDDFD7_profile_150_square.jpg',
+				child: false,
+			},
+			id: '79VRBC',
+			type: 'person',
+		},
+		{
+			attributes: {
+				name: 'Cynthia',
+				friend: true,
+				avatar:
+					'https://d6y8zfzc2qfsl.cloudfront.net/BE1E0BD6-B1B9-E308-712A-7175C2391BFE_profile_150_square.jpg',
+				child: false,
+			},
+			id: '2BRMF5',
+			type: 'person',
+		},
+	],
 };
 
 export { mockProfileData };

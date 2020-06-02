@@ -10,29 +10,53 @@ import { getOrRenewAccessToken } from './components/api/api';
 import { mockProfileData } from './mockData/mockData';
 
 function App() {
+	//different views
 	const [loginShown, setLoginShown] = useState(true);
 	const [mainDashInfo, setMainDashInfo] = useState(true);
+	const [aboutMeButton, setAboutMeButton] = useState(false);
+	const [friendsButton, setfriendsButton] = useState(false);
+	const [badgesButton, setBadgesButton] = useState(false);
 
+	//Data States
 	const [profileData, setProfileData] = useState('');
 	const [weeklyStepsData, setWeeklyStepsData] = useState('');
-
 	const [lifeTimeData, setLifeTimeData] = useState('');
 	const [dailyActivities, setDailyActivies] = useState('');
-	const [recentActivities, setRecentActivites] = useState('');
+	// const [recentActivities, setRecentActivites] = useState('');
+	const [friendsData, setFriendsData] = useState('');
 	const [activityGoals, setActivityGoals] = useState('');
-	const [aboutMeButton, setAboutMeButton] = useState(false);
 
+	//empty array for data to be changed and pushed
 	let updatedObjValuesofSteps = [];
 
 	const mainDashHandler = (e) => {
 		e.preventDefault();
 		setMainDashInfo(true);
+		setAboutMeButton(false);
 	};
 
 	const aboutMeButtonHandler = (e) => {
 		e.preventDefault();
 		setAboutMeButton(true);
 		setMainDashInfo(false);
+		setBadgesButton(false);
+		setfriendsButton(false);
+	};
+
+	const friendsButtonHandler = (e) => {
+		e.preventDefault();
+		setfriendsButton(true);
+		setMainDashInfo(false);
+		setAboutMeButton(false);
+		setBadgesButton(false);
+	};
+
+	const badgesButtonHandler = (e) => {
+		e.preventDefault();
+		setBadgesButton(true);
+		setMainDashInfo(false);
+		setAboutMeButton(false);
+		setfriendsButton(false);
 	};
 
 	const loginGuestHandler = (e) => {
@@ -45,6 +69,8 @@ function App() {
 		});
 		setDailyActivies(mockProfileData.summary);
 		setActivityGoals(mockProfileData.goals);
+		setFriendsData(mockProfileData.friends);
+		console.log(mockProfileData.friends);
 	};
 
 	const logOutButtonHandler = (e) => {
@@ -100,6 +126,8 @@ function App() {
 		const getRecentActivites = `https://api.fitbit.com/1/user/-/activities/recent.json`;
 		//daily summary includes goals
 		const getTodaySummary = `https://api.fitbit.com/1/user/-/activities/date/today.json`;
+		//FRIENDS
+		const getFriendInfo = `https://api.fitbit.com/1.1/user/-/friends.json`;
 
 		// weekly stats for distance/steps
 		const get7DaySteps = `https://api.fitbit.com/1/user/-/activities/steps/date/today/7d.json`;
@@ -147,6 +175,11 @@ function App() {
 					logOutButtonHandler={logOutButtonHandler}
 					activityGoals={activityGoals}
 					updatedObjValuesofSteps={updatedObjValuesofSteps}
+					badgesButtonHandler={badgesButtonHandler}
+					friendsButtonHandler={friendsButtonHandler}
+					badgesButton={badgesButton}
+					friendsButton={friendsButton}
+					friendsData={friendsData}
 				/>
 			)}
 		</div>

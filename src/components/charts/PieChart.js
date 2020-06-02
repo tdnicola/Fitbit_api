@@ -13,16 +13,7 @@ export default ({ height, width, data, colors, dataKey, nameKey }) => {
 			value: 300,
 		},
 	];
-	const data02 = [
-		{
-			name: 'Group A',
-			value: 2400,
-		},
-		{
-			name: 'Group B',
-			value: 4567,
-		},
-	];
+
 	const testColors = ['#8884d8', '#2884d8'];
 	return (
 		<PieChart width={width} height={height}>

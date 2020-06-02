@@ -2,10 +2,10 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import StarIcon from '@material-ui/icons/Star';
 //components
-import BarChart from '../charts/BarChart';
+// import BarChart from '../charts/BarChart';
 import PieChart from '../charts/PieChart';
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
 	completedStar: {
@@ -16,15 +16,6 @@ const useStyles = makeStyles((theme) => ({
 		// textAlign: 'center',
 	},
 }));
-
-const data = [
-	{
-		name: 'Page A',
-		'Daily Steps': 4000,
-		pv: 2400,
-		uv: 3500,
-	},
-];
 
 export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 	const classes = useStyles();
@@ -136,10 +127,6 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 									fill={'#8884d8'}
 									domain={[0, 20000]}
 								/>
-								{console.log('piegraphFloors: ')}
-								{console.log(pieGraphFloors)}
-								{console.log('piegraphsteps ')}
-								{console.log(pieGraphFloors)}
 							</div>
 						)}
 					</Grid>
@@ -150,10 +137,6 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 								<StarIcon className={classes.completedStar} />
 								<br />
 								Congrats! Goal Achieved!
-								{console.log(
-									'daily distance ' + dailyDistance,
-									+'daily floors ' + dailyDistance.floors
-								)}
 							</div>
 						) : (
 							<PieChart

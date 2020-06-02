@@ -10,20 +10,26 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Button from '@material-ui/core/Button';
+
+//ICONS
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import AssessmentIcon from '@material-ui/icons/Assessment';
-import PieChartIcon from '@material-ui/icons/PieChart';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import Button from '@material-ui/core/Button';
-//components
+import GroupIcon from '@material-ui/icons/Group';
+import StarsIcon from '@material-ui/icons/Stars';
+
+//COMPONENTS
+import Badges from '../badges/Badges';
 import HomeIcon from '@material-ui/icons/Home';
 import MainPage from '../main-page/MainPage';
 import AboutMe from '../about-me/AboutMe';
+import Friends from '../friends/Friends';
 // import LifeTimeData from '../lifetime-data/LifeTimeData';
 
 const drawerWidth = 240;
@@ -118,6 +124,11 @@ export default ({
 	dailyActivities,
 	logOutButtonHandler,
 	activityGoals,
+	badgesButtonHandler,
+	badgesButton,
+	friendsButtonHandler,
+	friendsButton,
+	friendsData,
 }) => {
 	const classes = useStyles();
 	const theme = useTheme();
@@ -216,19 +227,42 @@ export default ({
 					</ListItem>
 				</List>
 				<List>
-					{['Lifetime', 'Today', 'Past Week'].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>
-								{index % 2 === 0 ? <AssessmentIcon /> : <PieChartIcon />}
-							</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
+					<ListItem
+						button
+						key={'aboutMe'}
+						onClick={(e) => {
+							aboutMeButtonHandler(e);
+						}}
+					>
+						<ListItemIcon>{<AssessmentIcon />}</ListItemIcon>
+						<ListItemText primary={'Lifetime Data'} />
+					</ListItem>
+
+					<ListItem
+						button
+						key={'badges'}
+						onClick={(e) => {
+							badgesButtonHandler(e);
+						}}
+					>
+						<ListItemIcon>{<StarsIcon />}</ListItemIcon>
+						<ListItemText primary={'Badges'} />
+					</ListItem>
+
+					<ListItem
+						button
+						key={'friends'}
+						onClick={(e) => {
+							friendsButtonHandler(e);
+						}}
+					>
+						<ListItemIcon>{<GroupIcon />}</ListItemIcon>
+						<ListItemText primary={'friends'} />
+					</ListItem>
 				</List>
 				<Divider />
 			</Drawer>
 			<div className={classes.content}>
-				{/* {lifeTimeData && <LifeTimeData lifeTimeData={lifeTimeData} />} */}
 				{activityGoals && mainDashInfo && (
 					<MainPage
 						dailyActivities={dailyActivities}
@@ -240,6 +274,8 @@ export default ({
 				{aboutMeButton && (
 					<AboutMe profileData={profileData} lifeTimeData={lifeTimeData} />
 				)}
+				{badgesButton && <Badges profileData={profileData} />}
+				{friendsButton && <Friends friendsData={friendsData} />}
 			</div>
 		</div>
 	);
