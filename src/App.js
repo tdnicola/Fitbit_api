@@ -22,6 +22,8 @@ function App() {
 	const [activityGoals, setActivityGoals] = useState('');
 	const [aboutMeButton, setAboutMeButton] = useState(false);
 
+	let updatedObjValuesofSteps = [];
+
 	const mainDashHandler = (e) => {
 		e.preventDefault();
 		setMainDashInfo(true);
@@ -29,7 +31,7 @@ function App() {
 
 	const aboutMeButtonHandler = (e) => {
 		e.preventDefault();
-		setAboutMeButton(!aboutMeButton);
+		setAboutMeButton(true);
 		setMainDashInfo(false);
 	};
 
@@ -38,7 +40,9 @@ function App() {
 		setLoginShown(false);
 		setProfileData(mockProfileData.user);
 		setLifeTimeData(mockProfileData.lifetime);
-		setWeeklyStepsData(mockProfileData['activities-steps']);
+		setWeeklyStepsData({
+			'activities-steps': mockProfileData['activities-steps'],
+		});
 		setDailyActivies(mockProfileData.summary);
 		setActivityGoals(mockProfileData.goals);
 	};
@@ -89,7 +93,6 @@ function App() {
 		const config = {
 			headers: { Authorization: `Bearer ${accessToken}` },
 		};
-		console.log('getuserdata function');
 		const getProfileData = `https://api.fitbit.com/1/user/-/profile.json`;
 
 		const getLifeTimeData = `https://api.fitbit.com/1/user/-/activities.json`;
@@ -118,10 +121,9 @@ function App() {
 					setProfileData(responseOne.data.user);
 					setLifeTimeData(responseTwo.data.lifetime);
 					setDailyActivies(responseThree.data.summary);
-					// setRecentActivites(responseFour.data);
+					console.log(responseThree.data);
 					setActivityGoals(responseThree.data.goals);
 					setWeeklyStepsData(responseFour.data);
-					console.log('weekly distance: ' + responseFour.data);
 				})
 			)
 			.catch((errors) => {
@@ -144,6 +146,7 @@ function App() {
 					weeklyStepsData={weeklyStepsData}
 					logOutButtonHandler={logOutButtonHandler}
 					activityGoals={activityGoals}
+					updatedObjValuesofSteps={updatedObjValuesofSteps}
 				/>
 			)}
 		</div>

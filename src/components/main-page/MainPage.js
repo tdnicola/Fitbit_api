@@ -20,15 +20,20 @@ function MainPage({
 	weeklyStepsData,
 	dailyActivities,
 	activityGoals,
+	// updatedObjValuesofSteps,
 }) {
 	// const classes = useStyles();
 
-	let updatedObjValuesofSteps = weeklyStepsData;
-
-	for (let obj of updatedObjValuesofSteps) {
-		obj['steps'] = obj['value'];
+	let updatedObjValuesofSteps = [];
+	if (weeklyStepsData) {
+		weeklyStepsData['activities-steps'].map((e) => {
+			e = {
+				steps: e.value,
+				dateTime: e.dateTime,
+			};
+			updatedObjValuesofSteps.push(e);
+		});
 	}
-
 	//find the daily distance in the array of distances
 	const dailyDistance = dailyActivities.distances.find(
 		(x) => x.activity === 'total'

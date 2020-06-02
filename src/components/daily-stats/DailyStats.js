@@ -136,6 +136,10 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 									fill={'#8884d8'}
 									domain={[0, 20000]}
 								/>
+								{console.log('piegraphFloors: ')}
+								{console.log(pieGraphFloors)}
+								{console.log('piegraphsteps ')}
+								{console.log(pieGraphFloors)}
 							</div>
 						)}
 					</Grid>
@@ -146,7 +150,10 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 								<StarIcon className={classes.completedStar} />
 								<br />
 								Congrats! Goal Achieved!
-								{console.log(dailyDistance, dailyDistance.floors)}
+								{console.log(
+									'daily distance ' + dailyDistance,
+									+'daily floors ' + dailyDistance.floors
+								)}
 							</div>
 						) : (
 							<PieChart
