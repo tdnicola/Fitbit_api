@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Fitbit_api/precache-manifest.6813d8cdbc04070a8e1431577b6cc529.js"
+  "/Fitbit_api/precache-manifest.07555d4023507c98423b3885d13b72e9.js"
 );
 
 self.addEventListener('message', (event) => {

@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Fitbit_api/static/css/main.5c11b6fb.chunk.css",
-    "main.js": "/Fitbit_api/static/js/main.5a171107.chunk.js",
-    "main.js.map": "/Fitbit_api/static/js/main.5a171107.chunk.js.map",
+    "main.js": "/Fitbit_api/static/js/main.37e3ae22.chunk.js",
+    "main.js.map": "/Fitbit_api/static/js/main.37e3ae22.chunk.js.map",
     "runtime-main.js": "/Fitbit_api/static/js/runtime-main.9c120be1.js",
     "runtime-main.js.map": "/Fitbit_api/static/js/runtime-main.9c120be1.js.map",
     "static/js/2.2fd23f6c.chunk.js": "/Fitbit_api/static/js/2.2fd23f6c.chunk.js",
     "static/js/2.2fd23f6c.chunk.js.map": "/Fitbit_api/static/js/2.2fd23f6c.chunk.js.map",
     "index.html": "/Fitbit_api/index.html",
-    "precache-manifest.6813d8cdbc04070a8e1431577b6cc529.js": "/Fitbit_api/precache-manifest.6813d8cdbc04070a8e1431577b6cc529.js",
+    "precache-manifest.07555d4023507c98423b3885d13b72e9.js": "/Fitbit_api/precache-manifest.07555d4023507c98423b3885d13b72e9.js",
     "service-worker.js": "/Fitbit_api/service-worker.js",
     "static/css/main.5c11b6fb.chunk.css.map": "/Fitbit_api/static/css/main.5c11b6fb.chunk.css.map",
     "static/js/2.2fd23f6c.chunk.js.LICENSE.txt": "/Fitbit_api/static/js/2.2fd23f6c.chunk.js.LICENSE.txt",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.9c120be1.js",
     "static/js/2.2fd23f6c.chunk.js",
     "static/css/main.5c11b6fb.chunk.css",
-    "static/js/main.5a171107.chunk.js"
+    "static/js/main.37e3ae22.chunk.js"
   ]
 }
