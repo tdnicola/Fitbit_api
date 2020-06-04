@@ -29,6 +29,9 @@ const useStyles = makeStyles({
 	avatar: {
 		justifyContent: 'center',
 	},
+	achieved: {
+		float: 'right',
+	},
 });
 
 export default ({ profileData }) => {
@@ -39,7 +42,7 @@ export default ({ profileData }) => {
 			<Grid container spacing={1}>
 				{profileData.topBadges.map((item) => {
 					return (
-						<Grid container item xs={3} spacing={1}>
+						<Grid item xs={10} md={4}>
 							<Card className={classes.root}>
 								<CardContent>
 									<Avatar
@@ -51,6 +54,9 @@ export default ({ profileData }) => {
 										{item.shortDescription}
 										<br />
 										Date: {item.dateTime}
+										<span className={classes.achieved}>
+											Times Achieved: {item.timesAchieved}
+										</span>
 									</Typography>
 
 									<Typography variant='body2' component='p'>

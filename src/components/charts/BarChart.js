@@ -8,6 +8,7 @@ import {
 	Legend,
 	Bar,
 	Tooltip,
+	Line,
 } from 'recharts';
 
 export default ({
@@ -20,6 +21,7 @@ export default ({
 	domain,
 	secondBarDataKey,
 	secondBarfill,
+	goals,
 }) => {
 	const secondBarChecker = () => {
 		if (secondBarDataKey === undefined) {
@@ -43,6 +45,8 @@ export default ({
 			<Tooltip />
 			<Legend />
 			<Bar dataKey={barDataKey} fill={fill} />
+			<Line type='monotone' dataKey={goals} stroke='#ff7300' />
+			{console.log(data)}
 			{secondBarChecker()}
 		</BarChart>
 	);

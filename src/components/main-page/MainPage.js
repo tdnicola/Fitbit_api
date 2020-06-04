@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import StatsCard from '../stats-card/StatsCard';
 import DailyStats from '../daily-stats/DailyStats';
 import PieChart from '../charts/PieChart';
+import ComposedChart from '../charts/ComposedChart';
 
 //SVG IMAGES
 import distance from '../../images/noun_distance_939669.svg';
@@ -28,6 +29,7 @@ function MainPage({
 	if (weeklyStepsData) {
 		weeklyStepsData['activities-steps'].map((e) => {
 			e = {
+				goal: activityGoals.steps,
 				steps: e.value,
 				dateTime: e.dateTime,
 			};
@@ -42,24 +44,24 @@ function MainPage({
 	return (
 		<React.Fragment>
 			<CssBaseline />
-			<Container maxWidth='lg'>
+			<Container>
 				Today's Info:
 				<Grid container spacing={2}>
-					<Grid item xs={4}>
+					<Grid item xs={10} md={4}>
 						<StatsCard
 							title={"Today's Steps: "}
 							data={dailyActivities.steps}
 							logo={steps}
 						/>
 					</Grid>
-					<Grid item xs={4}>
+					<Grid item xs={10} md={4}>
 						<StatsCard
 							title={"Today's Floors: "}
 							data={dailyActivities.floors}
 							logo={stairs}
 						/>
 					</Grid>
-					<Grid item xs={4}>
+					<Grid item xs={10} md={4}>
 						<StatsCard
 							title={"Today's Distance: "}
 							data={dailyDistance.distance}
@@ -72,8 +74,7 @@ function MainPage({
 					activityGoals={activityGoals}
 					dailyDistance={dailyDistance}
 				/>
-				Weekly Steps
-				<BarChart
+				<ComposedChart
 					width={730}
 					height={350}
 					data={updatedObjValuesofSteps}
@@ -81,6 +82,7 @@ function MainPage({
 					barDataKey={'steps'}
 					fill={'#8884d8'}
 					domain={[0, 20000]}
+					goal={'goal'}
 				/>
 				<PieChart />
 			</Container>

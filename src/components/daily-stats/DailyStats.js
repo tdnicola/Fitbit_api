@@ -10,10 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
 	completedStar: {
 		fontSize: 80,
-		// justifyContent: 'center',
-		margin: 'auto',
 		width: '100%',
-		// textAlign: 'center',
 	},
 }));
 
@@ -69,46 +66,7 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 				</div>
 			) : (
 				<Grid container spacing={2}>
-					{/* <Grid key={5}>
-					<BarChart
-						width={350}
-						height={350}
-						data={data}
-						xDataKey={'name'}
-						barDataKey={'uv'}
-						secondBarDataKey={'pv'}
-						secondBarfill={'#2884d8'}
-						fill={'#8884d8'}
-						domain={[0, 10000]}
-					/>
-				</Grid>
-				<Grid key={5}>
-					<BarChart
-						width={350}
-						height={350}
-						data={data}
-						xDataKey={'name'}
-						barDataKey={'uv'}
-						secondBarDataKey={'pv'}
-						secondBarfill={'#2884d8'}
-						fill={'#8884d8'}
-						domain={[0, 10000]}
-					/>
-				</Grid>
-				<Grid key={5}>
-					<BarChart
-						width={350}
-						height={350}
-						data={chartStepStats}
-						xDataKey={'name'}
-						barDataKey={'Daily steps'}
-						secondBarDataKey={'Goal steps'}
-						secondBarfill={'#2884d8'}
-						fill={'#8884d8'}
-						domain={[0, 20000]}
-					/>
-				</Grid> */}
-					<Grid key={5}>
+					<Grid item xs={10} md={4}>
 						Steps:
 						{activityGoals.steps - dailyActivities.steps <= 0 ? (
 							<div>
@@ -130,7 +88,7 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 							</div>
 						)}
 					</Grid>
-					<Grid key={5}>
+					<Grid item xs={10} md={4}>
 						Today's Floors:
 						{activityGoals.floors - dailyActivities.floors <= 0 ? (
 							<div>
@@ -150,7 +108,7 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 							/>
 						)}
 					</Grid>
-					<Grid key={5}>
+					<Grid item xs={10} md={4}>
 						Today's Distance:
 						{activityGoals.distance - dailyDistance.distance <= 0 ? (
 							<div>

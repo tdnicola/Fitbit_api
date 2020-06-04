@@ -229,19 +229,7 @@ export default ({
 						<ListItemIcon>{<AccountCircleIcon />}</ListItemIcon>
 						<ListItemText primary={'About me'} />
 					</ListItem>
-				</List>
-				<List>
-					<ListItem
-						button
-						key={'lifetime Data'}
-						onClick={(e) => {
-							lifeTimeButtonHandler(e);
-						}}
-					>
-						<ListItemIcon>{<AssessmentIcon />}</ListItemIcon>
-						<ListItemText primary={'Lifetime Data'} />
-					</ListItem>
-
+					<Divider />
 					<ListItem
 						button
 						key={'badges'}
@@ -251,6 +239,17 @@ export default ({
 					>
 						<ListItemIcon>{<StarsIcon />}</ListItemIcon>
 						<ListItemText primary={'Badges'} />
+					</ListItem>
+
+					<ListItem
+						button
+						key={'lifetime Data'}
+						onClick={(e) => {
+							lifeTimeButtonHandler(e);
+						}}
+					>
+						<ListItemIcon>{<AssessmentIcon />}</ListItemIcon>
+						<ListItemText primary={'Lifetime Data'} />
 					</ListItem>
 
 					<ListItem
