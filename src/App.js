@@ -16,6 +16,7 @@ function App() {
 	const [aboutMeButton, setAboutMeButton] = useState(false);
 	const [friendsButton, setfriendsButton] = useState(false);
 	const [badgesButton, setBadgesButton] = useState(false);
+	const [lifeTimeButton, setLifeTimeButton] = useState(false);
 
 	//Data States
 	const [profileData, setProfileData] = useState('');
@@ -33,30 +34,45 @@ function App() {
 		e.preventDefault();
 		setMainDashInfo(true);
 		setAboutMeButton(false);
+		setLifeTimeButton(false);
+		setfriendsButton(false);
+		setBadgesButton(false);
 	};
 
 	const aboutMeButtonHandler = (e) => {
 		e.preventDefault();
-		setAboutMeButton(true);
 		setMainDashInfo(false);
 		setBadgesButton(false);
 		setfriendsButton(false);
+		setLifeTimeButton(false);
+		setAboutMeButton(true);
 	};
 
 	const friendsButtonHandler = (e) => {
 		e.preventDefault();
-		setfriendsButton(true);
 		setMainDashInfo(false);
 		setAboutMeButton(false);
 		setBadgesButton(false);
+		setLifeTimeButton(false);
+		setfriendsButton(true);
+	};
+
+	const lifeTimeButtonHandler = (e) => {
+		e.preventDefault(e);
+		setfriendsButton(false);
+		setMainDashInfo(false);
+		setAboutMeButton(false);
+		setBadgesButton(false);
+		setLifeTimeButton(true);
 	};
 
 	const badgesButtonHandler = (e) => {
 		e.preventDefault();
-		setBadgesButton(true);
 		setMainDashInfo(false);
 		setAboutMeButton(false);
 		setfriendsButton(false);
+		setLifeTimeButton(false);
+		setBadgesButton(true);
 	};
 
 	const loginGuestHandler = (e) => {
@@ -70,7 +86,6 @@ function App() {
 		setDailyActivies(mockProfileData.summary);
 		setActivityGoals(mockProfileData.goals);
 		setFriendsData(mockProfileData.friends);
-		console.log(mockProfileData.friends);
 	};
 
 	const logOutButtonHandler = (e) => {
@@ -135,16 +150,17 @@ function App() {
 		const requestTwo = axios.get(getLifeTimeData, config);
 		const requestThree = axios.get(getTodaySummary, config);
 		const requestFour = axios.get(get7DaySteps, config);
+		const requestFive = axios.get(getFriendInfo, config);
 
 		axios
-			.all([requestOne, requestTwo, requestThree, requestFour])
+			.all([requestOne, requestTwo, requestThree, requestFour, requestFive])
 			.then(
 				axios.spread((...responses) => {
 					const responseOne = responses[0];
 					const responseTwo = responses[1];
 					const responseThree = responses[2];
 					const responseFour = responses[3];
-					// const responseFour = responses[3];
+					const responseFive = responses[4];
 
 					setProfileData(responseOne.data.user);
 					setLifeTimeData(responseTwo.data.lifetime);
@@ -152,6 +168,8 @@ function App() {
 					console.log(responseThree.data);
 					setActivityGoals(responseThree.data.goals);
 					setWeeklyStepsData(responseFour.data);
+					console.log(responseFive.data.data);
+					setFriendsData(responseFive.data.data);
 				})
 			)
 			.catch((errors) => {
@@ -180,6 +198,8 @@ function App() {
 					badgesButton={badgesButton}
 					friendsButton={friendsButton}
 					friendsData={friendsData}
+					lifeTimeButtonHandler={lifeTimeButtonHandler}
+					lifeTimeButton={lifeTimeButton}
 				/>
 			)}
 		</div>

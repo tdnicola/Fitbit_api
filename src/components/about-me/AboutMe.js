@@ -9,23 +9,15 @@ import Typography from '@material-ui/core/Typography';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 
-// components
-import LifeTimeData from '../lifetime-data/LifeTimeData';
-
 const useStyles = makeStyles({
 	root: {
-		width: '70%',
-		// margin: '105px',
+		width: '100%',
 		backgroundColor: '#3399CC',
 		color: 'black',
 		fontSize: '14px',
 		marginLeft: 75,
 	},
-	bullet: {
-		display: 'inline-block',
-		margin: '0 2px',
-		transform: 'scale(0.8)',
-	},
+
 	title: {
 		fontSize: 14,
 	},
@@ -34,13 +26,11 @@ const useStyles = makeStyles({
 	},
 });
 
-function AboutMe({ profileData, lifeTimeData }) {
+function AboutMe({ profileData }) {
 	const classes = useStyles();
 
 	return (
 		<Container>
-			Lifetime Data:
-			<LifeTimeData lifeTimeData={lifeTimeData} />
 			<Card className={classes.root}>
 				<CardHeader
 					avatar={

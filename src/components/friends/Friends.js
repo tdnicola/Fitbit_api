@@ -16,13 +16,8 @@ const useStyles = makeStyles({
 		backgroundColor: '#3399CC',
 		color: 'black',
 		fontSize: 14,
-		maxWidth: 'auto',
 	},
-	bullet: {
-		display: 'inline-block',
-		margin: '0 2px',
-		transform: 'scale(0.8)',
-	},
+
 	title: {
 		fontSize: 14,
 	},
@@ -37,9 +32,9 @@ export default ({ friendsData }) => {
 	return (
 		<Container>
 			Friends:
-			<Grid container spacing={1}>
+			<Grid container>
 				{friendsData.map((friend) => (
-					<Grid container item xl={3} spacing={1}>
+					<Grid container item spacing={1}>
 						<Card className={classes.root}>
 							<CardHeader
 								avatar={

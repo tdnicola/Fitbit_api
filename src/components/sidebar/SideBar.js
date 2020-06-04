@@ -30,6 +30,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import MainPage from '../main-page/MainPage';
 import AboutMe from '../about-me/AboutMe';
 import Friends from '../friends/Friends';
+import LifeTimeData from '../lifetime-data/LifeTimeData';
+
 // import LifeTimeData from '../lifetime-data/LifeTimeData';
 
 const drawerWidth = 240;
@@ -129,6 +131,8 @@ export default ({
 	friendsButtonHandler,
 	friendsButton,
 	friendsData,
+	lifeTimeButtonHandler,
+	lifeTimeButton,
 }) => {
 	const classes = useStyles();
 	const theme = useTheme();
@@ -229,9 +233,9 @@ export default ({
 				<List>
 					<ListItem
 						button
-						key={'aboutMe'}
+						key={'lifetime Data'}
 						onClick={(e) => {
-							aboutMeButtonHandler(e);
+							lifeTimeButtonHandler(e);
 						}}
 					>
 						<ListItemIcon>{<AssessmentIcon />}</ListItemIcon>
@@ -257,7 +261,7 @@ export default ({
 						}}
 					>
 						<ListItemIcon>{<GroupIcon />}</ListItemIcon>
-						<ListItemText primary={'friends'} />
+						<ListItemText primary={'Friends'} />
 					</ListItem>
 				</List>
 				<Divider />
@@ -274,6 +278,7 @@ export default ({
 				{aboutMeButton && (
 					<AboutMe profileData={profileData} lifeTimeData={lifeTimeData} />
 				)}
+				{lifeTimeButton && <LifeTimeData lifeTimeData={lifeTimeData} />}
 				{badgesButton && <Badges profileData={profileData} />}
 				{friendsButton && <Friends friendsData={friendsData} />}
 			</div>
