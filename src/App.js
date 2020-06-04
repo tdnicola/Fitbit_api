@@ -92,40 +92,56 @@ function App() {
 		e.preventDefault();
 		localStorage.clear();
 		setLoginShown(true);
-		window.location.href = 'http://localhost:3000';
+		window.location.href = 'https://tdnicola.github.io/Fitbit_api/';
+		// window.location.href = 'http://localhost:3000';
 	};
 
 	useEffect(() => {
-		if (window.location.href === 'http://localhost:3000/') {
-			return;
-		} else {
-			//may have code attached to url
-			const accessToken = localStorage.getItem('access_token');
-			const lastSavedTime = localStorage.getItem('last_saved_time');
+		const accessToken = localStorage.getItem('access_token');
+		const lastSavedTime = localStorage.getItem('last_saved_time');
 
-			//no access token previously stored, retreive code
+		if (
+			!accessToken &&
+			window.location.href === 'https://tdnicola.github.io/Fitbit_api/'
+		) {
+			//local testing
+			// if (!accessToken && window.location.href === 'http://localhost:3000/') {
+			return console.log('nocode');
+		} else if (accessToken && Date.now() - lastSavedTime > 28800000) {
+			//Access token not valid
+			let refreshToken = localStorage.getItem('refresh_token');
+
+			if (!refreshToken) {
+				//missing refresh token, clearing localstorage and start accesstoken route
+				localStorage.clear();
+				alert('It looks like something is missing. Please try again.');
+			}
+
+			//renewing access token
+			getOrRenewAccessToken('renew', refreshToken);
+			setLoginShown(false);
+		} else if (accessToken && Date.now() - lastSavedTime < 28800000) {
+			//Usable Access token
+			getUserData(accessToken);
+			setLoginShown(false);
+			console.log('we have the code');
+		} else {
+			//no access token previously stored, URL is a redirect with code
 			if (!accessToken) {
 				const searchParams = new URLSearchParams(window.location.search);
-				const code = searchParams.get('code');
+				const urlCode = searchParams.get('code');
 
-				if (!code) {
-					console.log('no code');
+				if (!urlCode) {
+					alert('Something went wrong please try again.');
 					return;
 				}
 
-				const getAccessCode = getOrRenewAccessToken('get', code);
+				//getting access code and userData
+				const getAccessCode = getOrRenewAccessToken('get', urlCode);
 				getAccessCode.then((code) => {
 					getUserData(code);
 					setLoginShown(false);
 				});
-
-				//refreshing token
-			} else if (accessToken && Date.now() - lastSavedTime > 28800000) {
-				let refreshToken = localStorage.getItem('refresh_token');
-
-				getOrRenewAccessToken('renew', refreshToken);
-				console.log('datenow route');
-				setLoginShown(false);
 			}
 		}
 	}, []);

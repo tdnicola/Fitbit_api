@@ -54,7 +54,9 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 		},
 		{
 			name: 'Distance left',
-			value: activityGoals.distance - dailyDistance.distance,
+			value: parseFloat(
+				Number(activityGoals.distance - dailyDistance.distance).toFixed(2)
+			),
 		},
 	];
 
@@ -78,7 +80,7 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 							<div>
 								<PieChart
 									width={350}
-									height={350}
+									height={450}
 									data={pieGraphSteps}
 									dataKey={'value'}
 									nameKey={'name'}
@@ -99,7 +101,7 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 						) : (
 							<PieChart
 								width={350}
-								height={350}
+								height={450}
 								data={pieGraphFloors}
 								dataKey={'value'}
 								nameKey={'name'}
@@ -108,7 +110,7 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 							/>
 						)}
 					</Grid>
-					<Grid item xs={10} md={4}>
+					<Grid item xs={10} md={4} style={{ overflow: 'visable' }}>
 						Today's Distance:
 						{activityGoals.distance - dailyDistance.distance <= 0 ? (
 							<div>
@@ -119,7 +121,7 @@ export default ({ dailyActivities, activityGoals, dailyDistance }) => {
 						) : (
 							<PieChart
 								width={350}
-								height={350}
+								height={450}
 								data={pieGraphDistance}
 								dataKey={'value'}
 								nameKey={'name'}

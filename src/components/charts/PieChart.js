@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { PieChart, Pie, Cell, Legend, Line } from 'recharts';
+import ResponsiveContainer from 'recharts/lib/component/ResponsiveContainer';
 
 export default ({ height, width, data, colors, dataKey, nameKey }) => {
 	const data01 = [
@@ -18,15 +19,14 @@ export default ({ height, width, data, colors, dataKey, nameKey }) => {
 	return (
 		<PieChart width={width} height={height}>
 			<Pie
+				style={{ fontSize: 20 }}
 				data={data}
 				dataKey={dataKey}
 				nameKey={nameKey}
-				cx='50%'
-				cy='50%'
-				innerRadius={50}
+				innerRadius={95}
 				label
+				paddingAngle={1}
 			>
-				<Line strokeWidth={1.5} />
 				{data01.map((entry, index) => (
 					<Cell key={`cell-${index}`} fill={testColors[index]} />
 				))}

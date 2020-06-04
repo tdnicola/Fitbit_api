@@ -84,7 +84,6 @@ function MainPage({
 					domain={[0, 20000]}
 					goal={'goal'}
 				/>
-				<PieChart />
 			</Container>
 		</React.Fragment>
 	);
