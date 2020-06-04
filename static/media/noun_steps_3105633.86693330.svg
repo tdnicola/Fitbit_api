@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="noun_steps_3105633.svg"
+   inkscape:version="1.0 (6e3e5246a0, 2020-05-07)"
+   id="svg49"
+   version="1.1"
+   viewBox="0 0 17.277033 25.150766"
+   height="25.150766mm"
+   width="17.277033mm">
+  <defs
+     id="defs43" />
+  <sodipodi:namedview
+     inkscape:window-maximized="0"
+     inkscape:window-y="27"
+     inkscape:window-x="50"
+     inkscape:window-height="1023"
+     inkscape:window-width="1511"
+     fit-margin-bottom="0"
+     fit-margin-right="0"
+     fit-margin-left="0"
+     fit-margin-top="0"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="mm"
+     inkscape:cy="73.002788"
+     inkscape:cx="-29.867859"
+     inkscape:zoom="3.959798"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
+  <metadata
+     id="metadata46">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-109.96466,-59.484102)"
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <switch
+       transform="matrix(0.26458333,0,0,0.26458333,105.37401,58.830034)"
+       id="switch14">
+      <foreignObject
+         requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/"
+         x="0"
+         y="0"
+         width="1"
+         height="1" />
+      <g
+         i:extraneous="self"
+         id="g12">
+        <g
+           id="g10">
+          <path
+             d="m 23.6,48.9 17.5,-1.3 c 1,-0.1 1.9,-0.8 2,-1.8 0.7,-3.9 2.1,-13.7 1.6,-21.5 C 44,14.4 42.4,1.8 32.9,2.5 23.5,3.2 16.7,19.3 17.4,29.8 c 0.6,7.8 2.8,14.7 3.9,17.6 0.4,1 1.3,1.6 2.3,1.5 z"
+             id="path2" />
+          <path
+             d="M 43.8,56.7 C 43.6,55.6 42.6,54.9 41.5,55 l -17,1.2 c -1.1,0.1 -2,1 -2.1,2.1 L 22,63.1 c -0.5,7 5.4,12.8 12.3,12.3 7,-0.5 11.9,-7.1 10.4,-13.9 z"
+             id="path4" />
+          <path
+             d="M 67.1,24.6 C 57.6,23.9 56,36.5 55.3,46.4 c -0.6,7.8 0.9,17.7 1.6,21.5 0.2,1 1,1.7 2,1.8 L 76.4,71 c 1,0.1 1.9,-0.5 2.3,-1.5 1.1,-3 3.3,-9.8 3.9,-17.6 C 83.3,41.4 76.5,25.3 67.1,24.6 Z"
+             id="path6" />
+          <path
+             d="m 75.6,78.3 -17,-1.2 c -1.1,-0.1 -2.1,0.7 -2.3,1.7 l -1,4.8 C 53.8,90.5 58.7,97 65.7,97.5 72.7,98 78.5,92.2 78,85.2 l -0.3,-4.9 c -0.1,-1.1 -1,-2 -2.1,-2 z"
+             id="path8" />
+        </g>
+      </g>
+    </switch>
+  </g>
+</svg>

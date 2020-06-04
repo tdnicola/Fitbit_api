@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Fitbit_api/static/css/main.5c11b6fb.chunk.css",
+    "main.js": "/Fitbit_api/static/js/main.21d553c8.chunk.js",
+    "main.js.map": "/Fitbit_api/static/js/main.21d553c8.chunk.js.map",
+    "runtime-main.js": "/Fitbit_api/static/js/runtime-main.9c120be1.js",
+    "runtime-main.js.map": "/Fitbit_api/static/js/runtime-main.9c120be1.js.map",
+    "static/js/2.2fd23f6c.chunk.js": "/Fitbit_api/static/js/2.2fd23f6c.chunk.js",
+    "static/js/2.2fd23f6c.chunk.js.map": "/Fitbit_api/static/js/2.2fd23f6c.chunk.js.map",
+    "index.html": "/Fitbit_api/index.html",
+    "precache-manifest.4f315d20e1ade3074291bc4583b07ec5.js": "/Fitbit_api/precache-manifest.4f315d20e1ade3074291bc4583b07ec5.js",
+    "service-worker.js": "/Fitbit_api/service-worker.js",
+    "static/css/main.5c11b6fb.chunk.css.map": "/Fitbit_api/static/css/main.5c11b6fb.chunk.css.map",
+    "static/js/2.2fd23f6c.chunk.js.LICENSE.txt": "/Fitbit_api/static/js/2.2fd23f6c.chunk.js.LICENSE.txt",
+    "static/media/noun_distance_939669.svg": "/Fitbit_api/static/media/noun_distance_939669.5396dbd2.svg",
+    "static/media/noun_steps_249968.svg": "/Fitbit_api/static/media/noun_steps_249968.f8c444a6.svg",
+    "static/media/noun_steps_3105633.svg": "/Fitbit_api/static/media/noun_steps_3105633.86693330.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9c120be1.js",
+    "static/js/2.2fd23f6c.chunk.js",
+    "static/css/main.5c11b6fb.chunk.css",
+    "static/js/main.21d553c8.chunk.js"
+  ]
+}
