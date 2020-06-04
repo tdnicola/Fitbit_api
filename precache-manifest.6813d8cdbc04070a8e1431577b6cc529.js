@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "45d8144b167c48584feb44ade0743ba5",
+    "revision": "eba391845722880dfa7c5ead9d9cefc4",
     "url": "/Fitbit_api/index.html"
   },
   {
-    "revision": "44ea6da4a1f145eeb2a4",
+    "revision": "68c19dbd63c1e4e42cea",
     "url": "/Fitbit_api/static/css/main.5c11b6fb.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Fitbit_api/static/js/2.2fd23f6c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "44ea6da4a1f145eeb2a4",
-    "url": "/Fitbit_api/static/js/main.21d553c8.chunk.js"
+    "revision": "68c19dbd63c1e4e42cea",
+    "url": "/Fitbit_api/static/js/main.5a171107.chunk.js"
   },
   {
     "revision": "6cf65dd9762cffce8085",
