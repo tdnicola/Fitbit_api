@@ -2,7 +2,13 @@
 
 > Web app for displaying personal Fitbit data. Or Guest Data if no fitbit login.
 
-> Currently redirect URL is to localhost:3000. Will change to github pages soon.
+Login will redirect user to the fitbit authentication login screen: 
+
+![fitbitApi](https://i.ibb.co/nzv9kzF/fitbitconsent.png "FitbitApi authentication")
+
+Guest user: 
+
+![fitbitguestdata](https://i.ibb.co/3YW0VB4/fitbitapi.png "fitbit guest data picture")
 
 To install
 

@@ -15,7 +15,7 @@ module.exports.getAccessToken = async (event) => {
 		grant_type: 'authorization_code',
 		code: event.pathParameters.code,
 		clientId: '22BQSB',
-		redirect_uri: 'http://localhost:3000/',
+		redirect_uri: 'https://tdnicola.github.io/Fitbit_api/',
 	};
 
 	const info = await axios({
@@ -51,7 +51,7 @@ module.exports.refreshAccessToken = async (event) => {
 	const data = {
 		grant_type: 'refresh_token',
 		refresh_token: event.pathParameters.code,
-		redirect_uri: 'http://localhost:3000/',
+		redirect_uri: 'https://tdnicola.github.io/Fitbit_api/',
 	};
 
 	const info = await axios({
